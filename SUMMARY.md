@@ -6,4 +6,4 @@
 * [SPIFFSの使用](spiffs.md)
 * [スマフォ用HTML](html.md)
 * [Template](template.md)
-* [温度/湿度の取得](ana_temp.md)
+* [206 UV Index](uv.md)
