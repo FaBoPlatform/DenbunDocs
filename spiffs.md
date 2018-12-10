@@ -34,7 +34,7 @@ dataフォルダを作成します。
 
 次にdataフォルダの中に、index.html を作成し、保存します。
 
-```
+```xml
 <html>
 <body>
 Hello World!
@@ -68,18 +68,6 @@ void handleRoot() {
   server.send(200, "text/html", contents);
 }
 
-void handleOn(){
-  digitalWrite(4, HIGH);
-  Serial.println("LED ON");
-  server.send(200, "text/html", "LED On");
-}
-
-void handleOff(){
-  digitalWrite(4, LOW);
-  Serial.println("LED OFF");
-  server.send(200, "text/html", "LED Off");
-}
-
 void setup()
 {
   Serial.begin(115200);
@@ -89,11 +77,7 @@ void setup()
   WiFi.softAPConfig(ip,ip,subnet);
   IPAddress serverIP = WiFi.softAPIP();
   server.on("/", handleRoot);
-  server.on("/on", handleOn);
-  server.on("/off", handleOff);
   server.begin();
-
-  pinMode(4, OUTPUT);
 
   Serial.println();
   Serial.print("AccessPoint:");
