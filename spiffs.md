@@ -46,12 +46,43 @@ ESP32 Sketch Data Uploadでindex.htmlをUploadします。
 
 ![](./img/spiffs005.png)
 
+## ESPAsyncWebServerの組み込み
+
+https://github.com/me-no-dev/ESPAsyncWebServer
+
+よりESPAsyncWebServerをダウンロードしてきます。
+
+![](./img/spiffs008.png)
+
+![](./img/spiffs009.png)
+
+Arduino IDEの[スケッチ]-[ライブラリのインクルード]-[ZIP形式のライブラリをインクルード]で、ダウンロードしてきたzipを指定します。
+
+![](./img/spiffs010.png)
+
+![](./img/spiffs011.png)
+
+## AsyncTCPの組み込み
+
+https://github.com/me-no-dev/AsyncTCP/tree/idf-update
+
+よりAsyncTCPのidf-updateブランチから、AyncTCPをダウンロードしてきます。
+
+![](./img/spiffs012.png)
+
+![](./img/spiffs013.png)
+
+Arduino IDEの[スケッチ]-[ライブラリのインクルード]-[ZIP形式のライブラリをインクルード]で、ダウンロードしてきたzipを指定します。
+
+![](./img/spiffs010.png)
+
+![](./img/spiffs014.png)
+
 ## APとWebServer
 
 ```c
 #include <WiFi.h>
-#include <WiFiClient.h>
-#include <WebServer.h>
+#include "ESPAsyncWebServer.h"
 #include "FS.h"
 #include "SPIFFS.h"
 
@@ -59,14 +90,7 @@ const char ssid[] = "ESP32AP-AKIRA";
 const char pass[] = "11111111";
 const IPAddress ip(192,168,0,1);
 const IPAddress subnet(255,255,255,0);
-WebServer server(80);
-
-void handleRoot() {
-  File file = SPIFFS.open("/index.html", "r");
-  String contents =file.readString();
-  file.close();
-  server.send(200, "text/html", contents);
-}
+AsyncWebServer server(80);
 
 void setup()
 {
@@ -76,7 +100,9 @@ void setup()
   delay(100);
   WiFi.softAPConfig(ip,ip,subnet);
   IPAddress serverIP = WiFi.softAPIP();
-  server.on("/", handleRoot);
+  server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
+    request->send(SPIFFS, "/index.html", "text/html");
+  }); 
   server.begin();
 
   Serial.println();
@@ -86,9 +112,7 @@ void setup()
   Serial.println(serverIP);
 }
 
-void loop() {
-  server.handleClient();
-}
+void loop() {}
 ```
 
 
