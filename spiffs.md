@@ -48,7 +48,7 @@ ESP32 Sketch Data Uploadでindex.htmlをUploadします。
 
 ## APとWebServer
 
-```
+```c
 #include <WiFi.h>
 #include <WiFiClient.h>
 #include <WebServer.h>
