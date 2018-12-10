@@ -101,4 +101,19 @@ void loop() {
 
 ## 改造
 
+```xml
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Refresh" content="3">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+UV INDEX: %UVINDEX%<br>
+IR: %IR%<br>
+VISIBLE: %VISIBLE%<br>
+</body>
+</html>
+```
 
