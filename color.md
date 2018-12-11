@@ -43,7 +43,8 @@ Arduino
 #include "ESPAsyncWebServer.h"
 #include "FS.h"
 #include "SPIFFS.h"
-#include <FaBoColor_S11059.h>
+#include "./FaBoColor_S11059.h"
+#include "Arduino.h"
 
 FaBoColor faboColor;
 
@@ -53,11 +54,53 @@ const char pass[] = "11111111";
 const IPAddress ip(192,168,0,1);
 const IPAddress subnet(255,255,255,0);
 AsyncWebServer server(80);
+int RED_MIN = 300;
+int RED_MAX = 700;
+int GREEN_MIN = 200;
+int GREEN_MAX = 700;
+int BLUE_MIN = 200;
+int BLUE_MAX = 630;
 
 String processor(const String& var)
 {
   if(var == "COLOR") {
-    String color = "#" + String(r&0xff,HEX) + String(g&0xff, HEX) + String(b&0xff, HEX);
+    if(r<RED_MIN)r=RED_MIN;
+    if(g<RED_MAX)g=RED_MAX;
+    if(b<GREEN_MIN)b=GREEN_MIN;
+    if(r>GREEN_MAX)r=GREEN_MAX;
+    if(g>BLUE_MIN)g=BLUE_MIN;
+    if(b>BLUE_MAX)b=BLUE_MAX;
+    
+    r = map(r,RED_MIN,RED_MAX,0,255);
+    g = map(g,GREEN_MIN,GREEN_MAX,0,255);
+    b = map(b,BLUE_MIN,BLUE_MAX,0,255);
+    
+    Serial.print("red:");
+    Serial.println(r);
+    Serial.print("green:");
+    Serial.println(g);
+    Serial.print("blue:");
+    Serial.println(b);
+    String red = "";
+    String blue = "";
+    String green = "";
+    if(r <= 0x0f) {
+      red = "0" + String(r,HEX);
+    } else {
+      red = String(r,HEX);
+    }
+    if(g <= 0x0f) {
+      green = "0" + String(g,HEX);
+    } else {
+      green = String(g,HEX);
+    }
+    if(b <= 0x0f) {
+      blue = "0" + String(b,HEX);
+    } else {
+      blue = String(b,HEX);
+    }
+    String color = "#" + red + green + blue;
+    Serial.println(color);
     return color;
   }
   return String();
@@ -95,4 +138,18 @@ void setup()
 void loop() {
 }
 ```
+
+## キャリブレーション
+
+```c
+int RED_MIN = 300;
+int RED_MAX = 700;
+int GREEN_MIN = 200;
+int GREEN_MAX = 700;
+int BLUE_MIN = 200;
+int BLUE_MAX = 630;
+```
+
+の値を調整して校正します。
+![]("./img/colortable.png")
 
