@@ -10,3 +10,4 @@
 * [207 Temperature](temperature.md)
 * [RobotCarの組み立て](build.md)
 * [RobotCarの制御](robot.md)
+* [Servoの制御](servo.md)
