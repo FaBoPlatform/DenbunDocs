@@ -151,5 +151,6 @@ int BLUE_MAX = 630;
 ```
 
 の値を調整して校正します。
-![]("./img/colortable.png")
+
+![](./img/colortable.png)
 
