@@ -1,4 +1,4 @@
-# UV Index
+# 206 UV Index
 
 206をI2Cの端子につなぎます。
 
