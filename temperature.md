@@ -1,8 +1,12 @@
-# 206 UV Index
+# 207 Temerature
 
-206をI2Cの端子につなぎます。
+## ライブラリの取り込み
 
-## ソースコード
+![](./img/temp001.png)
+
+![](./img/temp002.png)
+
+## Temerature
 
 index.html
 
@@ -11,14 +15,33 @@ index.html
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Refresh" content="3">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" type="text/css" href="/denbun.css">
 </head>
 <body>
-UV INDEX: %UVINDEX%<br>
-IR: %IR%<br>
-VISIBLE: %VISIBLE%<br>
+<div class="temperature">
+  温度: %TEMP% 度<br>
+</div>
 </body>
 </html>
+```
+
+denbun.css
+
+```xml
+body {
+  background: 
+    linear-gradient(#00FFFF, #80FF00) fixed;
+}
+
+.temperature {
+  text-align: center;
+  margin: 120px 0;
+  font-size: 35px;
+  color: #FFFFFF;
+}
+
 ```
 
 Arduino
@@ -28,9 +51,9 @@ Arduino
 #include "ESPAsyncWebServer.h"
 #include "FS.h"
 #include "SPIFFS.h"
-#include "FaBoUV_Si1132.h"
+#include <FaBoTemperature_ADT7410.h>
 
-FaBoUV faboUV;
+FaBoTemperature faboTemperature;
 
 const char ssid[] = "ESP32AP-AKIRA";
 const char pass[] = "11111111";
@@ -38,20 +61,14 @@ const IPAddress ip(192,168,0,1);
 const IPAddress subnet(255,255,255,0);
 AsyncWebServer server(80);
 
-double uvindex = 0;
-double ir = 0;
-double visible = 0;
+double temp = 0;
 
 String processor(const String& var)
 {
-  if(var == "UVINDEX") {
-    return String(uvindex, DEC);
-  }
-  if(var == "IR") {
-    return String(ir, DEC);
-  }
-  if(var == "VISIBLE") {
-    return String(visible, DEC);
+  if(var == "TEMP") {
+    String tempStr = String(temp, DEC);
+    tempStr = tempStr.substring(0,4);
+    return tempStr;
   }
   return String();
 }
@@ -60,10 +77,7 @@ void setup()
 {
   Serial.begin(115200);
 
-  while(!faboUV.begin()){
-    Serial.println("Si1132 Not Found");
-    delay(5000);
-  }
+  faboTemperature.begin();
   
   SPIFFS.begin();
   WiFi.softAP(ssid,pass);
@@ -71,7 +85,11 @@ void setup()
   WiFi.softAPConfig(ip,ip,subnet);
   IPAddress serverIP = WiFi.softAPIP();
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
+    temp = faboTemperature.readTemperature();
     request->send(SPIFFS, "/index.html", String(), false, processor);
+  });  
+  server.on("/denbun.css", HTTP_GET, [](AsyncWebServerRequest *request){
+    request->send(SPIFFS,"/denbun.css","text/css");
   });  
   server.begin();
 
@@ -82,38 +100,7 @@ void setup()
   Serial.println(serverIP);
 }
 
-void loop() {
-  uvindex = faboUV.readUV()/100;
-  ir = faboUV.readIR();
-  visible = faboUV.readVisible();
-  
-  Serial.print("UV:");
-  Serial.println(uvindex);
-  Serial.print("IR:");
-  Serial.println(ir);
-  Serial.print("Visible:");
-  Serial.println(visible);
-  Serial.println("");  
-
-  delay(1000);
-}
+void loop() {}
 ```
 
-## 改造
-
-```xml
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="Refresh" content="3">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-</head>
-<body>
-UV INDEX: %UVINDEX%<br>
-IR: %IR%<br>
-VISIBLE: %VISIBLE%<br>
-</body>
-</html>
-```
-
+![](./img/temp004.png)
