@@ -9,6 +9,7 @@
 * [206 UV Index](uv.md)
 * [207 Temperature](temperature.md)
 * [WebSocket](websocket.md)
+* [201 3Axis](3axis.md)
 * [RobotCarの組み立て](build.md)
 * [RobotCarの制御](robot.md)
 * [Servoの制御](servo.md)
