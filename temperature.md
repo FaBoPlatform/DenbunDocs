@@ -103,4 +103,4 @@ void setup()
 void loop() {}
 ```
 
-![](./img/temp004.png)
+![](./img/temp003.png)
