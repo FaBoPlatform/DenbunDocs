@@ -36,7 +36,7 @@
     
     
       
-        <title>Webサーバ - FaBo Denbun Docs</title>
+        <title>LEDの点灯/消灯 - FaBo Denbun Docs</title>
       
     
     
@@ -74,7 +74,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#web" tabindex="1" class="md-skip">
+      <a href="#led" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -100,7 +100,7 @@
                 FaBo Denbun Docs
               </span>
               <span class="md-header-nav__topic">
-                Webサーバ
+                LEDの点灯/消灯
               </span>
             
           
@@ -195,9 +195,66 @@
 
 
   <li class="md-nav__item">
-    <a href="../2.led/" title="LEDの点灯/消灯" class="md-nav__link">
+    <a href="../2.web/" title="Webサーバ" class="md-nav__link">
+      Webサーバ
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        LEDの点灯/消灯
+      </label>
+    
+    <a href="./" title="LEDの点灯/消灯" class="md-nav__link md-nav__link--active">
       LEDの点灯/消灯
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目次</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#led_1" title="LEDの点灯/消灯" class="md-nav__link">
+    LEDの点灯/消灯
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ledweb" title="LEDをWebから操作" class="md-nav__link">
+    LEDをWebから操作
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
     
@@ -313,63 +370,6 @@
       
       
 
-  
-
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Webサーバ
-      </label>
-    
-    <a href="./" title="Webサーバ" class="md-nav__link md-nav__link--active">
-      Webサーバ
-    </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">目次</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#accesspointweb" title="AccessPointとWebサーバの立ち上げ" class="md-nav__link">
-    AccessPointとWebサーバの立ち上げ
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" title="ブラウザからの接続" class="md-nav__link">
-    ブラウザからの接続
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
-  </li>
-
-    
-      
-      
-      
-
 
   <li class="md-nav__item">
     <a href="../websocket/" title="WebSocket" class="md-nav__link">
@@ -399,15 +399,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#accesspointweb" title="AccessPointとWebサーバの立ち上げ" class="md-nav__link">
-    AccessPointとWebサーバの立ち上げ
+  <a href="#led_1" title="LEDの点灯/消灯" class="md-nav__link">
+    LEDの点灯/消灯
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_1" title="ブラウザからの接続" class="md-nav__link">
-    ブラウザからの接続
+  <a href="#ledweb" title="LEDをWebから操作" class="md-nav__link">
+    LEDをWebから操作
   </a>
   
 </li>
@@ -429,31 +429,31 @@
               
                 
                 
-                <h1 id="web">Webサーバ</h1>
-<p>FaBo Denbunの開発環境は、DenbunをWebサーバ化しておこないます。</p>
-<h2 id="accesspointweb">AccessPointとWebサーバの立ち上げ</h2>
-<table>
-<thead>
-<tr>
-<th align="left">項目</th>
-<th align="left">内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">ssid</td>
-<td align="left">ESP32AP-自分の名前</td>
-</tr>
-<tr>
-<td align="left">pass</td>
-<td align="left">任意の値</td>
-</tr>
-<tr>
-<td align="left">ip</td>
-<td align="left">192.168.0.1</td>
-</tr>
-</tbody>
-</table>
+                <h1 id="led">LEDの点灯/消灯</h1>
+<h2 id="led_1">LEDの点灯/消灯</h2>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">pinMode</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<h2 id="ledweb">LEDをWebから操作</h2>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -501,13 +501,33 @@
 45
 46
 47
-48</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;WiFi.h&gt;</span><span class="cp"></span>
+48
+49
+50</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;WiFi.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;WiFiClient.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;WebServer.h&gt;</span><span class="cp"></span>
 
 <span class="k">const</span> <span class="kt">char</span> <span class="n">ssid</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;ESP32AP-AKIRA&quot;</span><span class="p">;</span>
 <span class="k">const</span> <span class="kt">char</span> <span class="n">pass</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;11111111&quot;</span><span class="p">;</span>
 <span class="k">const</span> <span class="n">IPAddress</span> <span class="nf">ip</span><span class="p">(</span><span class="mi">192</span><span class="p">,</span><span class="mi">168</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
 <span class="k">const</span> <span class="n">IPAddress</span> <span class="nf">subnet</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
-<span class="n">WiFiServer</span> <span class="nf">server</span><span class="p">(</span><span class="mi">80</span><span class="p">);</span>
+<span class="n">WebServer</span> <span class="nf">server</span><span class="p">(</span><span class="mi">80</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">handleRoot</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="s">&quot;text/html&quot;</span><span class="p">,</span> <span class="s">&quot;LED Control&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">handleOn</span><span class="p">(){</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;LED ON&quot;</span><span class="p">);</span>
+  <span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="s">&quot;text/html&quot;</span><span class="p">,</span> <span class="s">&quot;LED On&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">handleOff</span><span class="p">(){</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;LED OFF&quot;</span><span class="p">);</span>
+  <span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="s">&quot;text/html&quot;</span><span class="p">,</span> <span class="s">&quot;LED Off&quot;</span><span class="p">);</span>
+<span class="p">}</span>
 
 <span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span>
 <span class="p">{</span>
@@ -516,7 +536,12 @@
   <span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
   <span class="n">WiFi</span><span class="p">.</span><span class="n">softAPConfig</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span><span class="n">ip</span><span class="p">,</span><span class="n">subnet</span><span class="p">);</span>
   <span class="n">IPAddress</span> <span class="n">serverIP</span> <span class="o">=</span> <span class="n">WiFi</span><span class="p">.</span><span class="n">softAPIP</span><span class="p">();</span>
+  <span class="n">server</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">,</span> <span class="n">handleRoot</span><span class="p">);</span>
+  <span class="n">server</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">&quot;/on&quot;</span><span class="p">,</span> <span class="n">handleOn</span><span class="p">);</span>
+  <span class="n">server</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">&quot;/off&quot;</span><span class="p">,</span> <span class="n">handleOff</span><span class="p">);</span>
   <span class="n">server</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+
+  <span class="n">pinMode</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
 
   <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">();</span>
   <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;AccessPoint:&quot;</span><span class="p">);</span>
@@ -526,38 +551,29 @@
 <span class="p">}</span>
 
 <span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">WiFiClient</span> <span class="n">client</span> <span class="o">=</span> <span class="n">server</span><span class="p">.</span><span class="n">available</span><span class="p">();</span>
-  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">client</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;new request&quot;</span><span class="p">);</span>
-  <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">client</span><span class="p">.</span><span class="n">available</span><span class="p">()){</span>
-    <span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-  <span class="p">}</span>
-
-  <span class="n">String</span> <span class="n">res</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
-  <span class="k">while</span><span class="p">(</span><span class="n">client</span><span class="p">.</span><span class="n">available</span><span class="p">())</span> <span class="p">{</span>
-      <span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">read</span><span class="p">();</span> 
-      <span class="n">res</span> <span class="o">+=</span> <span class="n">c</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">res</span><span class="p">);</span>
-
-  <span class="n">client</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;HTTP/1.1 200 OK</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
-  <span class="n">client</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Content-Type: text/html; charset=utf-8;</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
-  <span class="n">client</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
-  <span class="n">count</span><span class="o">++</span><span class="p">;</span>
-  <span class="n">client</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">count</span><span class="p">);</span>
+  <span class="n">server</span><span class="p">.</span><span class="n">handleClient</span><span class="p">();</span>
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
 
-<p>AccessPointへの接続をおこないます。</p>
-<p><img alt="" src="../img/web001.png" /></p>
-<p><img alt="" src="../img/web002.png" /></p>
-<h2 id="_1">ブラウザからの接続</h2>
-<p><img alt="" src="../img/web003.png" /></p>
-<p><img alt="" src="../img/web004.png" /></p>
+<table>
+<thead>
+<tr>
+<th align="left">項目</th>
+<th align="left">値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">http://192.168.0.1/on</td>
+<td align="left">LED on</td>
+</tr>
+<tr>
+<td align="left">http://192.168.0.1/off</td>
+<td align="left">LED off</td>
+</tr>
+</tbody>
+</table>
                 
                   
                 
@@ -578,7 +594,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../uv/" title="206 UV Index" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../2.web/" title="Webサーバ" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -587,19 +603,19 @@
                 <span class="md-footer-nav__direction">
                   前
                 </span>
-                206 UV Index
+                Webサーバ
               </span>
             </div>
           </a>
         
         
-          <a href="../websocket/" title="WebSocket" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../3axis/" title="201 3Axis" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   次
                 </span>
-                WebSocket
+                201 3Axis
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
