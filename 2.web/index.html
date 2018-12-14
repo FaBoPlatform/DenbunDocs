@@ -276,6 +276,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../4.spiffs/" title="SPIFFS" class="md-nav__link">
+      SPIFFS
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
     <a href="../color/" title="203 Color" class="md-nav__link">
       203 Color
     </a>
@@ -314,18 +326,6 @@
   <li class="md-nav__item">
     <a href="../servo/" title="Servoの制御" class="md-nav__link">
       Servoの制御
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../spiffs/" title="SPIFFS" class="md-nav__link">
-      SPIFFS
     </a>
   </li>
 
@@ -501,13 +501,15 @@
 45
 46
 47
-48</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;WiFi.h&gt;</span><span class="cp"></span>
+48
+49</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;WiFi.h&gt;</span><span class="cp"></span>
 
 <span class="k">const</span> <span class="kt">char</span> <span class="n">ssid</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;ESP32AP-AKIRA&quot;</span><span class="p">;</span>
 <span class="k">const</span> <span class="kt">char</span> <span class="n">pass</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;11111111&quot;</span><span class="p">;</span>
 <span class="k">const</span> <span class="n">IPAddress</span> <span class="nf">ip</span><span class="p">(</span><span class="mi">192</span><span class="p">,</span><span class="mi">168</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
 <span class="k">const</span> <span class="n">IPAddress</span> <span class="nf">subnet</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
 <span class="n">WiFiServer</span> <span class="nf">server</span><span class="p">(</span><span class="mi">80</span><span class="p">);</span>
+<span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
 <span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span>
 <span class="p">{</span>
