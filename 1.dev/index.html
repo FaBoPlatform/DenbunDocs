@@ -462,11 +462,28 @@
 <h2 id="arduino-ide">Arduino IDEのインストール</h2>
 <p><a href="https://www.arduino.cc/en/Main/Software">https://www.arduino.cc/en/Main/Software</a> よりArduino IDEをダウンロードして、インストールします。</p>
 <h2 id="esp32">ESP32用開発環境の構築</h2>
-<p>Arduino IDEの<span class="keys"><kbd>Arduino</kbd><span>+</span><kbd>Preferences...</kbd></span>を選択します。</p>
+<p>Arduino IDEのメニューから、++"Arduino"&gt;"Preferences..."++を選択します。</p>
 <p><img alt="" src="../img/dev001.png" /></p>
+<p>追加のボードマネージャーのURLに、https://dl.espressif.com/dl/package_esp32_index.json を追加します。</p>
 <p><img alt="" src="../img/dev002.png" /></p>
+<table>
+<thead>
+<tr>
+<th align="left">項目</th>
+<th align="left">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">追加のボードマネージャーのURL</td>
+<td align="left">https://dl.espressif.com/dl/package_esp32_index.json</td>
+</tr>
+</tbody>
+</table>
 <p><img alt="" src="../img/dev003.png" /></p>
+<p>Arduino IDEのメニューから、++"ツール"&gt;"ボード: Arduino/Genuino Uno"&gt;"ボードマネージャー..."++を選択します。</p>
 <p><img alt="" src="../img/dev004.png" /></p>
+<p>esp32のキーワードで検索しでてくる、<code>esp32 by Espressif Systems</code>をインストールします。</p>
 <p><img alt="" src="../img/dev005.png" /></p>
 <h2 id="sample">Sample</h2>
 <p>LED BrickをIO4に接続し、下記コードをArduino IDEに記述します。</p>
