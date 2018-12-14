@@ -503,7 +503,23 @@
 47
 48
 49
-50</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;WiFi.h&gt;</span><span class="cp"></span>
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;WiFi.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;WiFiClient.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;WebServer.h&gt;</span><span class="cp"></span>
 
@@ -512,21 +528,37 @@
 <span class="k">const</span> <span class="n">IPAddress</span> <span class="nf">ip</span><span class="p">(</span><span class="mi">192</span><span class="p">,</span><span class="mi">168</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
 <span class="k">const</span> <span class="n">IPAddress</span> <span class="nf">subnet</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
 <span class="n">WebServer</span> <span class="nf">server</span><span class="p">(</span><span class="mi">80</span><span class="p">);</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="n">page</span><span class="p">[]</span> <span class="n">PROGMEM</span> <span class="o">=</span> <span class="n">R</span><span class="s">&quot;=====(</span>
+<span class="o">&lt;!</span><span class="n">DOCTYPE</span> <span class="n">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">meta</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="n">content</span><span class="o">=</span><span class="s">&quot;width=device-width,initial-scale=1&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">center</span><span class="o">&gt;</span>
+<span class="n">LED</span><span class="o">&lt;</span><span class="n">br</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s">&quot;/on&quot;</span><span class="o">&gt;</span><span class="n">ON</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;&lt;</span><span class="n">br</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s">&quot;/off&quot;</span><span class="o">&gt;</span><span class="n">OFF</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;&lt;</span><span class="n">br</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">center</span><span class="o">&gt;</span>
+
+<span class="o">&lt;/</span><span class="n">body</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">html</span><span class="o">&gt;</span>
+<span class="p">)</span><span class="o">=====</span><span class="s">&quot;;</span>
 
 <span class="kt">void</span> <span class="nf">handleRoot</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="s">&quot;text/html&quot;</span><span class="p">,</span> <span class="s">&quot;LED Control&quot;</span><span class="p">);</span>
+  <span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="s">&quot;text/html&quot;</span><span class="p">,</span> <span class="n">page</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="kt">void</span> <span class="nf">handleOn</span><span class="p">(){</span>
   <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
   <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;LED ON&quot;</span><span class="p">);</span>
-  <span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="s">&quot;text/html&quot;</span><span class="p">,</span> <span class="s">&quot;LED On&quot;</span><span class="p">);</span>
+  <span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="s">&quot;text/html&quot;</span><span class="p">,</span> <span class="n">page</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="kt">void</span> <span class="nf">handleOff</span><span class="p">(){</span>
   <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
   <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;LED OFF&quot;</span><span class="p">);</span>
-  <span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="s">&quot;text/html&quot;</span><span class="p">,</span> <span class="s">&quot;LED Off&quot;</span><span class="p">);</span>
+  <span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="s">&quot;text/html&quot;</span><span class="p">,</span> <span class="n">page</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span>
