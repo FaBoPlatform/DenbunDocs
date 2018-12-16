@@ -650,7 +650,7 @@
 </tr>
 </tbody>
 </table>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<p> <table class=codehilitetable><tr><td class=linenos><div class=linenodiv><pre> 1
  2
  3
  4
@@ -698,58 +698,56 @@
 46
 47
 48
-49</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;WiFi.h&gt;</span><span class="cp"></span>
+49</pre></div></td><td class=code><div class=codehilite><pre><span></span><span class=cp>#include</span> <span class=cpf>&lt;WiFi.h&gt;</span><span class=cp></span>
 
-<span class="k">const</span> <span class="kt">char</span> <span class="n">ssid</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;ESP32AP-AKIRA&quot;</span><span class="p">;</span>
-<span class="k">const</span> <span class="kt">char</span> <span class="n">pass</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;11111111&quot;</span><span class="p">;</span>
-<span class="k">const</span> <span class="n">IPAddress</span> <span class="nf">ip</span><span class="p">(</span><span class="mi">192</span><span class="p">,</span><span class="mi">168</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-<span class="k">const</span> <span class="n">IPAddress</span> <span class="nf">subnet</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
-<span class="n">WiFiServer</span> <span class="nf">server</span><span class="p">(</span><span class="mi">80</span><span class="p">);</span>
-<span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class=k>const</span> <span class=kt>char</span> <span class=n>ssid</span><span class=p>[]</span> <span class=o>=</span> <span class=s>&quot;ESP32AP-AKIRA&quot;</span><span class=p>;</span>
+<span class=k>const</span> <span class=kt>char</span> <span class=n>pass</span><span class=p>[]</span> <span class=o>=</span> <span class=s>&quot;11111111&quot;</span><span class=p>;</span>
+<span class=k>const</span> <span class=n>IPAddress</span> <span class=nf>ip</span><span class=p>(</span><span class=mi>192</span><span class=p>,</span><span class=mi>168</span><span class=p>,</span><span class=mi>0</span><span class=p>,</span><span class=mi>1</span><span class=p>);</span>
+<span class=k>const</span> <span class=n>IPAddress</span> <span class=nf>subnet</span><span class=p>(</span><span class=mi>255</span><span class=p>,</span><span class=mi>255</span><span class=p>,</span><span class=mi>255</span><span class=p>,</span><span class=mi>0</span><span class=p>);</span>
+<span class=n>WiFiServer</span> <span class=nf>server</span><span class=p>(</span><span class=mi>80</span><span class=p>);</span>
+<span class=kt>int</span> <span class=n>count</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
 
-<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span>
-<span class="p">{</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
-  <span class="n">WiFi</span><span class="p">.</span><span class="n">softAP</span><span class="p">(</span><span class="n">ssid</span><span class="p">,</span><span class="n">pass</span><span class="p">);</span>
-  <span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
-  <span class="n">WiFi</span><span class="p">.</span><span class="n">softAPConfig</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span><span class="n">ip</span><span class="p">,</span><span class="n">subnet</span><span class="p">);</span>
-  <span class="n">IPAddress</span> <span class="n">serverIP</span> <span class="o">=</span> <span class="n">WiFi</span><span class="p">.</span><span class="n">softAPIP</span><span class="p">();</span>
-  <span class="n">server</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+<span class=kt>void</span> <span class=nf>setup</span><span class=p>()</span>
+<span class=p>{</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>begin</span><span class=p>(</span><span class=mi>115200</span><span class=p>);</span>
+  <span class=n>WiFi</span><span class=p>.</span><span class=n>softAP</span><span class=p>(</span><span class=n>ssid</span><span class=p>,</span><span class=n>pass</span><span class=p>);</span>
+  <span class=n>delay</span><span class=p>(</span><span class=mi>100</span><span class=p>);</span>
+  <span class=n>WiFi</span><span class=p>.</span><span class=n>softAPConfig</span><span class=p>(</span><span class=n>ip</span><span class=p>,</span><span class=n>ip</span><span class=p>,</span><span class=n>subnet</span><span class=p>);</span>
+  <span class=n>IPAddress</span> <span class=n>serverIP</span> <span class=o>=</span> <span class=n>WiFi</span><span class=p>.</span><span class=n>softAPIP</span><span class=p>();</span>
+  <span class=n>server</span><span class=p>.</span><span class=n>begin</span><span class=p>();</span>
 
-  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">();</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;AccessPoint:&quot;</span><span class="p">);</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">ssid</span><span class="p">);</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;IP:&quot;</span><span class="p">);</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">serverIP</span><span class="p">);</span>
-<span class="p">}</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>();</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>print</span><span class=p>(</span><span class=s>&quot;AccessPoint:&quot;</span><span class=p>);</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>(</span><span class=n>ssid</span><span class=p>);</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>print</span><span class=p>(</span><span class=s>&quot;IP:&quot;</span><span class=p>);</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>(</span><span class=n>serverIP</span><span class=p>);</span>
+<span class=p>}</span>
 
-<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">WiFiClient</span> <span class="n">client</span> <span class="o">=</span> <span class="n">server</span><span class="p">.</span><span class="n">available</span><span class="p">();</span>
-  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">client</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span><span class="p">;</span>
-  <span class="p">}</span>
+<span class=kt>void</span> <span class=nf>loop</span><span class=p>()</span> <span class=p>{</span>
+  <span class=n>WiFiClient</span> <span class=n>client</span> <span class=o>=</span> <span class=n>server</span><span class=p>.</span><span class=n>available</span><span class=p>();</span>
+  <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=n>client</span><span class=p>)</span> <span class=p>{</span>
+    <span class=k>return</span><span class=p>;</span>
+  <span class=p>}</span>
 
-  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;new request&quot;</span><span class="p">);</span>
-  <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">client</span><span class="p">.</span><span class="n">available</span><span class="p">()){</span>
-    <span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-  <span class="p">}</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>(</span><span class=s>&quot;new request&quot;</span><span class=p>);</span>
+  <span class=k>while</span><span class=p>(</span><span class=o>!</span><span class=n>client</span><span class=p>.</span><span class=n>available</span><span class=p>()){</span>
+    <span class=n>delay</span><span class=p>(</span><span class=mi>1</span><span class=p>);</span>
+  <span class=p>}</span>
 
-  <span class="n">String</span> <span class="n">res</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
-  <span class="k">while</span><span class="p">(</span><span class="n">client</span><span class="p">.</span><span class="n">available</span><span class="p">())</span> <span class="p">{</span>
-      <span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">read</span><span class="p">();</span> 
-      <span class="n">res</span> <span class="o">+=</span> <span class="n">c</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">res</span><span class="p">);</span>
+  <span class=n>String</span> <span class=n>res</span> <span class=o>=</span> <span class=s>&quot;&quot;</span><span class=p>;</span>
+  <span class=k>while</span><span class=p>(</span><span class=n>client</span><span class=p>.</span><span class=n>available</span><span class=p>())</span> <span class=p>{</span>
+      <span class=kt>char</span> <span class=n>c</span> <span class=o>=</span> <span class=n>client</span><span class=p>.</span><span class=n>read</span><span class=p>();</span> 
+      <span class=n>res</span> <span class=o>+=</span> <span class=n>c</span><span class=p>;</span>
+  <span class=p>}</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>(</span><span class=n>res</span><span class=p>);</span>
 
-  <span class="n">client</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;HTTP/1.1 200 OK</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
-  <span class="n">client</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Content-Type: text/html; charset=utf-8;</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
-  <span class="n">client</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
-  <span class="n">count</span><span class="o">++</span><span class="p">;</span>
-  <span class="n">client</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">count</span><span class="p">);</span>
-<span class="p">}</span>
-</pre></div>
-</td></tr></table>
-
+  <span class=n>client</span><span class=p>.</span><span class=n>print</span><span class=p>(</span><span class=s>&quot;HTTP/1.1 200 OK</span><span class=se>\r\n</span><span class=s>&quot;</span><span class=p>);</span>
+  <span class=n>client</span><span class=p>.</span><span class=n>print</span><span class=p>(</span><span class=s>&quot;Content-Type: text/html; charset=utf-8;</span><span class=se>\r\n</span><span class=s>&quot;</span><span class=p>);</span>
+  <span class=n>client</span><span class=p>.</span><span class=n>print</span><span class=p>(</span><span class=s>&quot;</span><span class=se>\r\n</span><span class=s>&quot;</span><span class=p>);</span>
+  <span class=n>count</span><span class=o>++</span><span class=p>;</span>
+  <span class=n>client</span><span class=p>.</span><span class=n>println</span><span class=p>(</span><span class=n>count</span><span class=p>);</span>
+<span class=p>}</span>
+</pre></div></td></tr></table></p>
 <p>AccessPointへの接続をおこないます。</p>
 <p><img alt="" src="../img/web001.png" /></p>
 <p><img alt="" src="../img/web002.png" /></p>

@@ -629,7 +629,7 @@
 <p>206をI2Cの端子につなぎます。</p>
 <h2 id="_1">ソースコード</h2>
 <p>index.html</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<p> <table class=codehilitetable><tr><td class=linenos><div class=linenodiv><pre> 1
  2
  3
  4
@@ -640,23 +640,21 @@
  9
 10
 11
-12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="nt">&lt;html&gt;</span>
-<span class="nt">&lt;head&gt;</span>
-<span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">&quot;UTF-8&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content=</span><span class="s">&quot;width=device-width,initial-scale=1&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/head&gt;</span>
-<span class="nt">&lt;body&gt;</span>
-UV INDEX: %UVINDEX%<span class="nt">&lt;br&gt;</span>
-IR: %IR%<span class="nt">&lt;br&gt;</span>
-VISIBLE: %VISIBLE%<span class="nt">&lt;br&gt;</span>
-<span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
-</pre></div>
-</td></tr></table>
-
+12</pre></div></td><td class=code><div class=codehilite><pre><span></span><span class=cp>&lt;!DOCTYPE html&gt;</span>
+<span class=nt>&lt;html&gt;</span>
+<span class=nt>&lt;head&gt;</span>
+<span class=nt>&lt;meta</span> <span class=na>charset=</span><span class=s>&quot;UTF-8&quot;</span><span class=nt>&gt;</span>
+<span class=nt>&lt;meta</span> <span class=na>name=</span><span class=s>&quot;viewport&quot;</span> <span class=na>content=</span><span class=s>&quot;width=device-width,initial-scale=1&quot;</span><span class=nt>&gt;</span>
+<span class=nt>&lt;/head&gt;</span>
+<span class=nt>&lt;body&gt;</span>
+UV INDEX: %UVINDEX%<span class=nt>&lt;br&gt;</span>
+IR: %IR%<span class=nt>&lt;br&gt;</span>
+VISIBLE: %VISIBLE%<span class=nt>&lt;br&gt;</span>
+<span class=nt>&lt;/body&gt;</span>
+<span class=nt>&lt;/html&gt;</span>
+</pre></div></td></tr></table></p>
 <p>Arduino</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<p> <table class=codehilitetable><tr><td class=linenos><div class=linenodiv><pre> 1
  2
  3
  4
@@ -728,84 +726,82 @@ VISIBLE: %VISIBLE%<span class="nt">&lt;br&gt;</span>
 70
 71
 72
-73</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;WiFi.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;ESPAsyncWebServer.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;FS.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;SPIFFS.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;FaBoUV_Si1132.h&quot;</span><span class="cp"></span>
+73</pre></div></td><td class=code><div class=codehilite><pre><span></span><span class=cp>#include</span> <span class=cpf>&quot;WiFi.h&quot;</span><span class=cp></span>
+<span class=cp>#include</span> <span class=cpf>&quot;ESPAsyncWebServer.h&quot;</span><span class=cp></span>
+<span class=cp>#include</span> <span class=cpf>&quot;FS.h&quot;</span><span class=cp></span>
+<span class=cp>#include</span> <span class=cpf>&quot;SPIFFS.h&quot;</span><span class=cp></span>
+<span class=cp>#include</span> <span class=cpf>&quot;FaBoUV_Si1132.h&quot;</span><span class=cp></span>
 
-<span class="n">FaBoUV</span> <span class="n">faboUV</span><span class="p">;</span>
+<span class=n>FaBoUV</span> <span class=n>faboUV</span><span class=p>;</span>
 
-<span class="k">const</span> <span class="kt">char</span> <span class="n">ssid</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;ESP32AP-AKIRA&quot;</span><span class="p">;</span>
-<span class="k">const</span> <span class="kt">char</span> <span class="n">pass</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;11111111&quot;</span><span class="p">;</span>
-<span class="k">const</span> <span class="n">IPAddress</span> <span class="nf">ip</span><span class="p">(</span><span class="mi">192</span><span class="p">,</span><span class="mi">168</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-<span class="k">const</span> <span class="n">IPAddress</span> <span class="nf">subnet</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
-<span class="n">AsyncWebServer</span> <span class="nf">server</span><span class="p">(</span><span class="mi">80</span><span class="p">);</span>
+<span class=k>const</span> <span class=kt>char</span> <span class=n>ssid</span><span class=p>[]</span> <span class=o>=</span> <span class=s>&quot;ESP32AP-AKIRA&quot;</span><span class=p>;</span>
+<span class=k>const</span> <span class=kt>char</span> <span class=n>pass</span><span class=p>[]</span> <span class=o>=</span> <span class=s>&quot;11111111&quot;</span><span class=p>;</span>
+<span class=k>const</span> <span class=n>IPAddress</span> <span class=nf>ip</span><span class=p>(</span><span class=mi>192</span><span class=p>,</span><span class=mi>168</span><span class=p>,</span><span class=mi>0</span><span class=p>,</span><span class=mi>1</span><span class=p>);</span>
+<span class=k>const</span> <span class=n>IPAddress</span> <span class=nf>subnet</span><span class=p>(</span><span class=mi>255</span><span class=p>,</span><span class=mi>255</span><span class=p>,</span><span class=mi>255</span><span class=p>,</span><span class=mi>0</span><span class=p>);</span>
+<span class=n>AsyncWebServer</span> <span class=nf>server</span><span class=p>(</span><span class=mi>80</span><span class=p>);</span>
 
-<span class="kt">double</span> <span class="n">uvindex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="kt">double</span> <span class="n">ir</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="kt">double</span> <span class="n">visible</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class=kt>double</span> <span class=n>uvindex</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+<span class=kt>double</span> <span class=n>ir</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+<span class=kt>double</span> <span class=n>visible</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
 
-<span class="n">String</span> <span class="nf">processor</span><span class="p">(</span><span class="k">const</span> <span class="n">String</span><span class="o">&amp;</span> <span class="n">var</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="k">if</span><span class="p">(</span><span class="n">var</span> <span class="o">==</span> <span class="s">&quot;UVINDEX&quot;</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">String</span><span class="p">(</span><span class="n">uvindex</span><span class="p">,</span> <span class="n">DEC</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="k">if</span><span class="p">(</span><span class="n">var</span> <span class="o">==</span> <span class="s">&quot;IR&quot;</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">String</span><span class="p">(</span><span class="n">ir</span><span class="p">,</span> <span class="n">DEC</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="k">if</span><span class="p">(</span><span class="n">var</span> <span class="o">==</span> <span class="s">&quot;VISIBLE&quot;</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">String</span><span class="p">(</span><span class="n">visible</span><span class="p">,</span> <span class="n">DEC</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="k">return</span> <span class="n">String</span><span class="p">();</span>
-<span class="p">}</span>
+<span class=n>String</span> <span class=nf>processor</span><span class=p>(</span><span class=k>const</span> <span class=n>String</span><span class=o>&amp;</span> <span class=n>var</span><span class=p>)</span>
+<span class=p>{</span>
+  <span class=k>if</span><span class=p>(</span><span class=n>var</span> <span class=o>==</span> <span class=s>&quot;UVINDEX&quot;</span><span class=p>)</span> <span class=p>{</span>
+    <span class=k>return</span> <span class=n>String</span><span class=p>(</span><span class=n>uvindex</span><span class=p>,</span> <span class=n>DEC</span><span class=p>);</span>
+  <span class=p>}</span>
+  <span class=k>if</span><span class=p>(</span><span class=n>var</span> <span class=o>==</span> <span class=s>&quot;IR&quot;</span><span class=p>)</span> <span class=p>{</span>
+    <span class=k>return</span> <span class=n>String</span><span class=p>(</span><span class=n>ir</span><span class=p>,</span> <span class=n>DEC</span><span class=p>);</span>
+  <span class=p>}</span>
+  <span class=k>if</span><span class=p>(</span><span class=n>var</span> <span class=o>==</span> <span class=s>&quot;VISIBLE&quot;</span><span class=p>)</span> <span class=p>{</span>
+    <span class=k>return</span> <span class=n>String</span><span class=p>(</span><span class=n>visible</span><span class=p>,</span> <span class=n>DEC</span><span class=p>);</span>
+  <span class=p>}</span>
+  <span class=k>return</span> <span class=n>String</span><span class=p>();</span>
+<span class=p>}</span>
 
-<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span>
-<span class="p">{</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
+<span class=kt>void</span> <span class=nf>setup</span><span class=p>()</span>
+<span class=p>{</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>begin</span><span class=p>(</span><span class=mi>115200</span><span class=p>);</span>
 
-  <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">faboUV</span><span class="p">.</span><span class="n">begin</span><span class="p">()){</span>
-    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Si1132 Not Found&quot;</span><span class="p">);</span>
-    <span class="n">delay</span><span class="p">(</span><span class="mi">5000</span><span class="p">);</span>
-  <span class="p">}</span>
+  <span class=k>while</span><span class=p>(</span><span class=o>!</span><span class=n>faboUV</span><span class=p>.</span><span class=n>begin</span><span class=p>()){</span>
+    <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>(</span><span class=s>&quot;Si1132 Not Found&quot;</span><span class=p>);</span>
+    <span class=n>delay</span><span class=p>(</span><span class=mi>5000</span><span class=p>);</span>
+  <span class=p>}</span>
 
-  <span class="n">SPIFFS</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
-  <span class="n">WiFi</span><span class="p">.</span><span class="n">softAP</span><span class="p">(</span><span class="n">ssid</span><span class="p">,</span><span class="n">pass</span><span class="p">);</span>
-  <span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
-  <span class="n">WiFi</span><span class="p">.</span><span class="n">softAPConfig</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span><span class="n">ip</span><span class="p">,</span><span class="n">subnet</span><span class="p">);</span>
-  <span class="n">IPAddress</span> <span class="n">serverIP</span> <span class="o">=</span> <span class="n">WiFi</span><span class="p">.</span><span class="n">softAPIP</span><span class="p">();</span>
-  <span class="n">server</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">,</span> <span class="n">HTTP_GET</span><span class="p">,</span> <span class="p">[](</span><span class="n">AsyncWebServerRequest</span> <span class="o">*</span><span class="n">request</span><span class="p">){</span>
-    <span class="n">request</span><span class="o">-&gt;</span><span class="n">send</span><span class="p">(</span><span class="n">SPIFFS</span><span class="p">,</span> <span class="s">&quot;/index.html&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">(),</span> <span class="nb">false</span><span class="p">,</span> <span class="n">processor</span><span class="p">);</span>
-  <span class="p">});</span>  
-  <span class="n">server</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+  <span class=n>SPIFFS</span><span class=p>.</span><span class=n>begin</span><span class=p>();</span>
+  <span class=n>WiFi</span><span class=p>.</span><span class=n>softAP</span><span class=p>(</span><span class=n>ssid</span><span class=p>,</span><span class=n>pass</span><span class=p>);</span>
+  <span class=n>delay</span><span class=p>(</span><span class=mi>100</span><span class=p>);</span>
+  <span class=n>WiFi</span><span class=p>.</span><span class=n>softAPConfig</span><span class=p>(</span><span class=n>ip</span><span class=p>,</span><span class=n>ip</span><span class=p>,</span><span class=n>subnet</span><span class=p>);</span>
+  <span class=n>IPAddress</span> <span class=n>serverIP</span> <span class=o>=</span> <span class=n>WiFi</span><span class=p>.</span><span class=n>softAPIP</span><span class=p>();</span>
+  <span class=n>server</span><span class=p>.</span><span class=n>on</span><span class=p>(</span><span class=s>&quot;/&quot;</span><span class=p>,</span> <span class=n>HTTP_GET</span><span class=p>,</span> <span class=p>[](</span><span class=n>AsyncWebServerRequest</span> <span class=o>*</span><span class=n>request</span><span class=p>){</span>
+    <span class=n>request</span><span class=o>-&gt;</span><span class=n>send</span><span class=p>(</span><span class=n>SPIFFS</span><span class=p>,</span> <span class=s>&quot;/index.html&quot;</span><span class=p>,</span> <span class=n>String</span><span class=p>(),</span> <span class=nb>false</span><span class=p>,</span> <span class=n>processor</span><span class=p>);</span>
+  <span class=p>});</span>  
+  <span class=n>server</span><span class=p>.</span><span class=n>begin</span><span class=p>();</span>
 
-  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">();</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;AccessPoint:&quot;</span><span class="p">);</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">ssid</span><span class="p">);</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;IP:&quot;</span><span class="p">);</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">serverIP</span><span class="p">);</span>
-<span class="p">}</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>();</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>print</span><span class=p>(</span><span class=s>&quot;AccessPoint:&quot;</span><span class=p>);</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>(</span><span class=n>ssid</span><span class=p>);</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>print</span><span class=p>(</span><span class=s>&quot;IP:&quot;</span><span class=p>);</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>(</span><span class=n>serverIP</span><span class=p>);</span>
+<span class=p>}</span>
 
-<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">uvindex</span> <span class="o">=</span> <span class="n">faboUV</span><span class="p">.</span><span class="n">readUV</span><span class="p">()</span><span class="o">/</span><span class="mi">100</span><span class="p">;</span>
-  <span class="n">ir</span> <span class="o">=</span> <span class="n">faboUV</span><span class="p">.</span><span class="n">readIR</span><span class="p">();</span>
-  <span class="n">visible</span> <span class="o">=</span> <span class="n">faboUV</span><span class="p">.</span><span class="n">readVisible</span><span class="p">();</span>
+<span class=kt>void</span> <span class=nf>loop</span><span class=p>()</span> <span class=p>{</span>
+  <span class=n>uvindex</span> <span class=o>=</span> <span class=n>faboUV</span><span class=p>.</span><span class=n>readUV</span><span class=p>()</span><span class=o>/</span><span class=mi>100</span><span class=p>;</span>
+  <span class=n>ir</span> <span class=o>=</span> <span class=n>faboUV</span><span class=p>.</span><span class=n>readIR</span><span class=p>();</span>
+  <span class=n>visible</span> <span class=o>=</span> <span class=n>faboUV</span><span class=p>.</span><span class=n>readVisible</span><span class=p>();</span>
 
-  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;UV:&quot;</span><span class="p">);</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">uvindex</span><span class="p">);</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;IR:&quot;</span><span class="p">);</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">ir</span><span class="p">);</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Visible:&quot;</span><span class="p">);</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">visible</span><span class="p">);</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>  
+  <span class=n>Serial</span><span class=p>.</span><span class=n>print</span><span class=p>(</span><span class=s>&quot;UV:&quot;</span><span class=p>);</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>(</span><span class=n>uvindex</span><span class=p>);</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>print</span><span class=p>(</span><span class=s>&quot;IR:&quot;</span><span class=p>);</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>(</span><span class=n>ir</span><span class=p>);</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>print</span><span class=p>(</span><span class=s>&quot;Visible:&quot;</span><span class=p>);</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>(</span><span class=n>visible</span><span class=p>);</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>(</span><span class=s>&quot;&quot;</span><span class=p>);</span>  
 
-  <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
-<span class="p">}</span>
-</pre></div>
-</td></tr></table>
-
+  <span class=n>delay</span><span class=p>(</span><span class=mi>1000</span><span class=p>);</span>
+<span class=p>}</span>
+</pre></div></td></tr></table></p>
 <h2 id="_2">改造</h2>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<p> <table class=codehilitetable><tr><td class=linenos><div class=linenodiv><pre> 1
  2
  3
  4
@@ -817,21 +813,20 @@ VISIBLE: %VISIBLE%<span class="nt">&lt;br&gt;</span>
 10
 11
 12
-13</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="nt">&lt;html&gt;</span>
-<span class="nt">&lt;head&gt;</span>
-<span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">&quot;UTF-8&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;Refresh&quot;</span> <span class="na">content=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content=</span><span class="s">&quot;width=device-width,initial-scale=1&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/head&gt;</span>
-<span class="nt">&lt;body&gt;</span>
-UV INDEX: %UVINDEX%<span class="nt">&lt;br&gt;</span>
-IR: %IR%<span class="nt">&lt;br&gt;</span>
-VISIBLE: %VISIBLE%<span class="nt">&lt;br&gt;</span>
-<span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
-</pre></div>
-</td></tr></table>
+13</pre></div></td><td class=code><div class=codehilite><pre><span></span><span class=cp>&lt;!DOCTYPE html&gt;</span>
+<span class=nt>&lt;html&gt;</span>
+<span class=nt>&lt;head&gt;</span>
+<span class=nt>&lt;meta</span> <span class=na>charset=</span><span class=s>&quot;UTF-8&quot;</span><span class=nt>&gt;</span>
+<span class=nt>&lt;meta</span> <span class=na>http-equiv=</span><span class=s>&quot;Refresh&quot;</span> <span class=na>content=</span><span class=s>&quot;3&quot;</span><span class=nt>&gt;</span>
+<span class=nt>&lt;meta</span> <span class=na>name=</span><span class=s>&quot;viewport&quot;</span> <span class=na>content=</span><span class=s>&quot;width=device-width,initial-scale=1&quot;</span><span class=nt>&gt;</span>
+<span class=nt>&lt;/head&gt;</span>
+<span class=nt>&lt;body&gt;</span>
+UV INDEX: %UVINDEX%<span class=nt>&lt;br&gt;</span>
+IR: %IR%<span class=nt>&lt;br&gt;</span>
+VISIBLE: %VISIBLE%<span class=nt>&lt;br&gt;</span>
+<span class=nt>&lt;/body&gt;</span>
+<span class=nt>&lt;/html&gt;</span>
+</pre></div></td></tr></table></p>
                 
                   
                 

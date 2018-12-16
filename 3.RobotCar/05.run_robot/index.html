@@ -632,7 +632,7 @@
 <p><img alt="" src="../img/robot002.png" /></p>
 <h2 id="_1">ソースコード</h2>
 <p>Arduino</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+<p> <table class=codehilitetable><tr><td class=linenos><div class=linenodiv><pre>  1
   2
   3
   4
@@ -735,112 +735,111 @@
 101
 102
 103
-104</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;WiFi.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;WiFiClient.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;WebServer.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;FaBoPWM_PCA9685.h&quot;</span><span class="cp"></span>
+104</pre></div></td><td class=code><div class=codehilite><pre><span></span><span class=cp>#include</span> <span class=cpf>&lt;WiFi.h&gt;</span><span class=cp></span>
+<span class=cp>#include</span> <span class=cpf>&lt;WiFiClient.h&gt;</span><span class=cp></span>
+<span class=cp>#include</span> <span class=cpf>&lt;WebServer.h&gt;</span><span class=cp></span>
+<span class=cp>#include</span> <span class=cpf>&quot;FaBoPWM_PCA9685.h&quot;</span><span class=cp></span>
 
-<span class="n">FaBoPWM</span> <span class="n">faboPWM</span><span class="p">;</span>
+<span class=n>FaBoPWM</span> <span class=n>faboPWM</span><span class=p>;</span>
 
-<span class="k">const</span> <span class="kt">char</span> <span class="n">ssid</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;ESP32AP-AKIRA&quot;</span><span class="p">;</span>
-<span class="k">const</span> <span class="kt">char</span> <span class="n">pass</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;11111111&quot;</span><span class="p">;</span>
-<span class="k">const</span> <span class="n">IPAddress</span> <span class="nf">ip</span><span class="p">(</span><span class="mi">192</span><span class="p">,</span><span class="mi">168</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-<span class="k">const</span> <span class="n">IPAddress</span> <span class="nf">subnet</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
-<span class="n">WebServer</span> <span class="nf">server</span><span class="p">(</span><span class="mi">80</span><span class="p">);</span>
-<span class="k">const</span> <span class="kt">char</span> <span class="n">page</span><span class="p">[]</span> <span class="n">PROGMEM</span> <span class="o">=</span> <span class="n">R</span><span class="s">&quot;=====(</span>
-<span class="o">&lt;!</span><span class="n">DOCTYPE</span> <span class="n">html</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">html</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">head</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">meta</span> <span class="n">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">meta</span> <span class="n">http</span><span class="o">-</span><span class="n">equiv</span><span class="o">=</span><span class="s">&quot;Refresh&quot;</span> <span class="n">content</span><span class="o">=</span><span class="s">&quot;3&quot;</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">meta</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="n">content</span><span class="o">=</span><span class="s">&quot;width=device-width,initial-scale=1&quot;</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="n">head</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">center</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">input</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s">&quot;↑&quot;</span> <span class="n">onClick</span><span class="o">=</span><span class="s">&quot;location.href=&#39;/forward&#39;&quot;</span><span class="o">&gt;&lt;</span><span class="n">br</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">input</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s">&quot;←&quot;</span> <span class="n">onClick</span><span class="o">=</span><span class="s">&quot;location.href=&#39;/right&#39;&quot;</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">input</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s">&quot;□&quot;</span> <span class="n">onClick</span><span class="o">=</span><span class="s">&quot;location.href=&#39;/stop&#39;&quot;</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">input</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s">&quot;→&quot;</span> <span class="n">onClick</span><span class="o">=</span><span class="s">&quot;location.href=&#39;/left&#39;&quot;</span><span class="o">&gt;&lt;</span><span class="n">br</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">input</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s">&quot;↓&quot;</span> <span class="n">onClick</span><span class="o">=</span><span class="s">&quot;location.href=&#39;/back&#39;&quot;</span><span class="o">&gt;&lt;</span><span class="n">br</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="n">center</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="n">body</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="n">html</span><span class="o">&gt;</span>
-<span class="p">)</span><span class="o">=====</span><span class="s">&quot;;</span>
-<span class="kt">int</span> <span class="n">STOP</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="kt">int</span> <span class="n">FORWARD</span> <span class="o">=</span> <span class="mi">400</span><span class="p">;</span>
-<span class="kt">int</span> <span class="n">BACK</span> <span class="o">=</span> <span class="mi">250</span><span class="p">;</span>
+<span class=k>const</span> <span class=kt>char</span> <span class=n>ssid</span><span class=p>[]</span> <span class=o>=</span> <span class=s>&quot;ESP32AP-AKIRA&quot;</span><span class=p>;</span>
+<span class=k>const</span> <span class=kt>char</span> <span class=n>pass</span><span class=p>[]</span> <span class=o>=</span> <span class=s>&quot;11111111&quot;</span><span class=p>;</span>
+<span class=k>const</span> <span class=n>IPAddress</span> <span class=nf>ip</span><span class=p>(</span><span class=mi>192</span><span class=p>,</span><span class=mi>168</span><span class=p>,</span><span class=mi>0</span><span class=p>,</span><span class=mi>1</span><span class=p>);</span>
+<span class=k>const</span> <span class=n>IPAddress</span> <span class=nf>subnet</span><span class=p>(</span><span class=mi>255</span><span class=p>,</span><span class=mi>255</span><span class=p>,</span><span class=mi>255</span><span class=p>,</span><span class=mi>0</span><span class=p>);</span>
+<span class=n>WebServer</span> <span class=nf>server</span><span class=p>(</span><span class=mi>80</span><span class=p>);</span>
+<span class=k>const</span> <span class=kt>char</span> <span class=n>page</span><span class=p>[]</span> <span class=n>PROGMEM</span> <span class=o>=</span> <span class=n>R</span><span class=s>&quot;=====(</span>
+<span class=o>&lt;!</span><span class=n>DOCTYPE</span> <span class=n>html</span><span class=o>&gt;</span>
+<span class=o>&lt;</span><span class=n>html</span><span class=o>&gt;</span>
+<span class=o>&lt;</span><span class=n>head</span><span class=o>&gt;</span>
+<span class=o>&lt;</span><span class=n>meta</span> <span class=n>charset</span><span class=o>=</span><span class=s>&quot;UTF-8&quot;</span><span class=o>&gt;</span>
+<span class=o>&lt;</span><span class=n>meta</span> <span class=n>http</span><span class=o>-</span><span class=n>equiv</span><span class=o>=</span><span class=s>&quot;Refresh&quot;</span> <span class=n>content</span><span class=o>=</span><span class=s>&quot;3&quot;</span><span class=o>&gt;</span>
+<span class=o>&lt;</span><span class=n>meta</span> <span class=n>name</span><span class=o>=</span><span class=s>&quot;viewport&quot;</span> <span class=n>content</span><span class=o>=</span><span class=s>&quot;width=device-width,initial-scale=1&quot;</span><span class=o>&gt;</span>
+<span class=o>&lt;/</span><span class=n>head</span><span class=o>&gt;</span>
+<span class=o>&lt;</span><span class=n>body</span><span class=o>&gt;</span>
+<span class=o>&lt;</span><span class=n>center</span><span class=o>&gt;</span>
+<span class=o>&lt;</span><span class=n>input</span> <span class=n>type</span><span class=o>=</span><span class=s>&quot;button&quot;</span> <span class=n>value</span><span class=o>=</span><span class=s>&quot;↑&quot;</span> <span class=n>onClick</span><span class=o>=</span><span class=s>&quot;location.href=&#39;/forward&#39;&quot;</span><span class=o>&gt;&lt;</span><span class=n>br</span><span class=o>&gt;</span>
+<span class=o>&lt;</span><span class=n>input</span> <span class=n>type</span><span class=o>=</span><span class=s>&quot;button&quot;</span> <span class=n>value</span><span class=o>=</span><span class=s>&quot;←&quot;</span> <span class=n>onClick</span><span class=o>=</span><span class=s>&quot;location.href=&#39;/right&#39;&quot;</span><span class=o>&gt;</span>
+<span class=o>&lt;</span><span class=n>input</span> <span class=n>type</span><span class=o>=</span><span class=s>&quot;button&quot;</span> <span class=n>value</span><span class=o>=</span><span class=s>&quot;□&quot;</span> <span class=n>onClick</span><span class=o>=</span><span class=s>&quot;location.href=&#39;/stop&#39;&quot;</span><span class=o>&gt;</span>
+<span class=o>&lt;</span><span class=n>input</span> <span class=n>type</span><span class=o>=</span><span class=s>&quot;button&quot;</span> <span class=n>value</span><span class=o>=</span><span class=s>&quot;→&quot;</span> <span class=n>onClick</span><span class=o>=</span><span class=s>&quot;location.href=&#39;/left&#39;&quot;</span><span class=o>&gt;&lt;</span><span class=n>br</span><span class=o>&gt;</span>
+<span class=o>&lt;</span><span class=n>input</span> <span class=n>type</span><span class=o>=</span><span class=s>&quot;button&quot;</span> <span class=n>value</span><span class=o>=</span><span class=s>&quot;↓&quot;</span> <span class=n>onClick</span><span class=o>=</span><span class=s>&quot;location.href=&#39;/back&#39;&quot;</span><span class=o>&gt;&lt;</span><span class=n>br</span><span class=o>&gt;</span>
+<span class=o>&lt;/</span><span class=n>center</span><span class=o>&gt;</span>
+<span class=o>&lt;/</span><span class=n>body</span><span class=o>&gt;</span>
+<span class=o>&lt;/</span><span class=n>html</span><span class=o>&gt;</span>
+<span class=p>)</span><span class=o>=====</span><span class=s>&quot;;</span>
+<span class=kt>int</span> <span class=n>STOP</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+<span class=kt>int</span> <span class=n>FORWARD</span> <span class=o>=</span> <span class=mi>400</span><span class=p>;</span>
+<span class=kt>int</span> <span class=n>BACK</span> <span class=o>=</span> <span class=mi>250</span><span class=p>;</span>
 
-<span class="kt">void</span> <span class="nf">handleRoot</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="s">&quot;text/html&quot;</span><span class="p">,</span> <span class="n">page</span><span class="p">);</span>
-<span class="p">}</span>
+<span class=kt>void</span> <span class=nf>handleRoot</span><span class=p>()</span> <span class=p>{</span>
+  <span class=n>server</span><span class=p>.</span><span class=n>send</span><span class=p>(</span><span class=mi>200</span><span class=p>,</span> <span class=s>&quot;text/html&quot;</span><span class=p>,</span> <span class=n>page</span><span class=p>);</span>
+<span class=p>}</span>
 
-<span class="kt">void</span> <span class="nf">handleStop</span><span class="p">(){</span>
-  <span class="n">faboPWM</span><span class="p">.</span><span class="n">set_channel_value</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">STOP</span><span class="p">);</span> 
-  <span class="n">faboPWM</span><span class="p">.</span><span class="n">set_channel_value</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">STOP</span><span class="p">);</span> 
-  <span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="s">&quot;text/html&quot;</span><span class="p">,</span> <span class="n">page</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="kt">void</span> <span class="nf">handleForward</span><span class="p">(){</span>
-  <span class="n">faboPWM</span><span class="p">.</span><span class="n">set_channel_value</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">FORWARD</span><span class="p">);</span> 
-  <span class="n">faboPWM</span><span class="p">.</span><span class="n">set_channel_value</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">BACK</span><span class="p">);</span> 
-  <span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="s">&quot;text/html&quot;</span><span class="p">,</span> <span class="n">page</span><span class="p">);</span>
-<span class="p">}</span>
+<span class=kt>void</span> <span class=nf>handleStop</span><span class=p>(){</span>
+  <span class=n>faboPWM</span><span class=p>.</span><span class=n>set_channel_value</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=n>STOP</span><span class=p>);</span> 
+  <span class=n>faboPWM</span><span class=p>.</span><span class=n>set_channel_value</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=n>STOP</span><span class=p>);</span> 
+  <span class=n>server</span><span class=p>.</span><span class=n>send</span><span class=p>(</span><span class=mi>200</span><span class=p>,</span> <span class=s>&quot;text/html&quot;</span><span class=p>,</span> <span class=n>page</span><span class=p>);</span>
+<span class=p>}</span>
+<span class=kt>void</span> <span class=nf>handleForward</span><span class=p>(){</span>
+  <span class=n>faboPWM</span><span class=p>.</span><span class=n>set_channel_value</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=n>FORWARD</span><span class=p>);</span> 
+  <span class=n>faboPWM</span><span class=p>.</span><span class=n>set_channel_value</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=n>BACK</span><span class=p>);</span> 
+  <span class=n>server</span><span class=p>.</span><span class=n>send</span><span class=p>(</span><span class=mi>200</span><span class=p>,</span> <span class=s>&quot;text/html&quot;</span><span class=p>,</span> <span class=n>page</span><span class=p>);</span>
+<span class=p>}</span>
 
-<span class="kt">void</span> <span class="nf">handleBack</span><span class="p">(){</span>
-  <span class="n">faboPWM</span><span class="p">.</span><span class="n">set_channel_value</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">BACK</span><span class="p">);</span> 
-  <span class="n">faboPWM</span><span class="p">.</span><span class="n">set_channel_value</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">FORWARD</span><span class="p">);</span> 
-  <span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="s">&quot;text/html&quot;</span><span class="p">,</span> <span class="n">page</span><span class="p">);</span>
-<span class="p">}</span>
+<span class=kt>void</span> <span class=nf>handleBack</span><span class=p>(){</span>
+  <span class=n>faboPWM</span><span class=p>.</span><span class=n>set_channel_value</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=n>BACK</span><span class=p>);</span> 
+  <span class=n>faboPWM</span><span class=p>.</span><span class=n>set_channel_value</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=n>FORWARD</span><span class=p>);</span> 
+  <span class=n>server</span><span class=p>.</span><span class=n>send</span><span class=p>(</span><span class=mi>200</span><span class=p>,</span> <span class=s>&quot;text/html&quot;</span><span class=p>,</span> <span class=n>page</span><span class=p>);</span>
+<span class=p>}</span>
 
-<span class="kt">void</span> <span class="nf">handleLeft</span><span class="p">(){</span>
-  <span class="n">faboPWM</span><span class="p">.</span><span class="n">set_channel_value</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">FORWARD</span><span class="p">);</span> 
-  <span class="n">faboPWM</span><span class="p">.</span><span class="n">set_channel_value</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">FORWARD</span><span class="p">);</span> 
-  <span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="s">&quot;text/html&quot;</span><span class="p">,</span> <span class="n">page</span><span class="p">);</span>
-<span class="p">}</span>
+<span class=kt>void</span> <span class=nf>handleLeft</span><span class=p>(){</span>
+  <span class=n>faboPWM</span><span class=p>.</span><span class=n>set_channel_value</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=n>FORWARD</span><span class=p>);</span> 
+  <span class=n>faboPWM</span><span class=p>.</span><span class=n>set_channel_value</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=n>FORWARD</span><span class=p>);</span> 
+  <span class=n>server</span><span class=p>.</span><span class=n>send</span><span class=p>(</span><span class=mi>200</span><span class=p>,</span> <span class=s>&quot;text/html&quot;</span><span class=p>,</span> <span class=n>page</span><span class=p>);</span>
+<span class=p>}</span>
 
-<span class="kt">void</span> <span class="nf">handleRight</span><span class="p">(){</span>
-  <span class="n">faboPWM</span><span class="p">.</span><span class="n">set_channel_value</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">BACK</span><span class="p">);</span> 
-  <span class="n">faboPWM</span><span class="p">.</span><span class="n">set_channel_value</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">BACK</span><span class="p">);</span>
-  <span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="s">&quot;text/html&quot;</span><span class="p">,</span> <span class="n">page</span><span class="p">);</span>
-<span class="p">}</span>
+<span class=kt>void</span> <span class=nf>handleRight</span><span class=p>(){</span>
+  <span class=n>faboPWM</span><span class=p>.</span><span class=n>set_channel_value</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=n>BACK</span><span class=p>);</span> 
+  <span class=n>faboPWM</span><span class=p>.</span><span class=n>set_channel_value</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=n>BACK</span><span class=p>);</span>
+  <span class=n>server</span><span class=p>.</span><span class=n>send</span><span class=p>(</span><span class=mi>200</span><span class=p>,</span> <span class=s>&quot;text/html&quot;</span><span class=p>,</span> <span class=n>page</span><span class=p>);</span>
+<span class=p>}</span>
 
-<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span>
-<span class="p">{</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
-  <span class="k">if</span><span class="p">(</span><span class="n">faboPWM</span><span class="p">.</span><span class="n">begin</span><span class="p">())</span> <span class="p">{</span>
-    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Find PCA9685&quot;</span><span class="p">);</span>
-    <span class="n">faboPWM</span><span class="p">.</span><span class="n">init</span><span class="p">(</span><span class="mi">300</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="n">faboPWM</span><span class="p">.</span><span class="n">set_hz</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
+<span class=kt>void</span> <span class=nf>setup</span><span class=p>()</span>
+<span class=p>{</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>begin</span><span class=p>(</span><span class=mi>115200</span><span class=p>);</span>
+  <span class=k>if</span><span class=p>(</span><span class=n>faboPWM</span><span class=p>.</span><span class=n>begin</span><span class=p>())</span> <span class=p>{</span>
+    <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>(</span><span class=s>&quot;Find PCA9685&quot;</span><span class=p>);</span>
+    <span class=n>faboPWM</span><span class=p>.</span><span class=n>init</span><span class=p>(</span><span class=mi>300</span><span class=p>);</span>
+  <span class=p>}</span>
+  <span class=n>faboPWM</span><span class=p>.</span><span class=n>set_hz</span><span class=p>(</span><span class=mi>50</span><span class=p>);</span>
 
-  <span class="n">faboPWM</span><span class="p">.</span><span class="n">set_channel_value</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">STOP</span><span class="p">);</span> 
-  <span class="n">faboPWM</span><span class="p">.</span><span class="n">set_channel_value</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">STOP</span><span class="p">);</span> 
+  <span class=n>faboPWM</span><span class=p>.</span><span class=n>set_channel_value</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=n>STOP</span><span class=p>);</span> 
+  <span class=n>faboPWM</span><span class=p>.</span><span class=n>set_channel_value</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=n>STOP</span><span class=p>);</span> 
 
-  <span class="n">WiFi</span><span class="p">.</span><span class="n">softAP</span><span class="p">(</span><span class="n">ssid</span><span class="p">,</span><span class="n">pass</span><span class="p">);</span>
-  <span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
-  <span class="n">WiFi</span><span class="p">.</span><span class="n">softAPConfig</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span><span class="n">ip</span><span class="p">,</span><span class="n">subnet</span><span class="p">);</span>
-  <span class="n">IPAddress</span> <span class="n">serverIP</span> <span class="o">=</span> <span class="n">WiFi</span><span class="p">.</span><span class="n">softAPIP</span><span class="p">();</span>
-  <span class="n">server</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">,</span> <span class="n">handleRoot</span><span class="p">);</span>
-  <span class="n">server</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">&quot;/stop&quot;</span><span class="p">,</span> <span class="n">handleStop</span><span class="p">);</span>
-  <span class="n">server</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">&quot;/forward&quot;</span><span class="p">,</span> <span class="n">handleForward</span><span class="p">);</span>
-  <span class="n">server</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">&quot;/back&quot;</span><span class="p">,</span> <span class="n">handleBack</span><span class="p">);</span>
-  <span class="n">server</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">&quot;/left&quot;</span><span class="p">,</span> <span class="n">handleLeft</span><span class="p">);</span>
-  <span class="n">server</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">&quot;/right&quot;</span><span class="p">,</span> <span class="n">handleRight</span><span class="p">);</span>
-  <span class="n">server</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+  <span class=n>WiFi</span><span class=p>.</span><span class=n>softAP</span><span class=p>(</span><span class=n>ssid</span><span class=p>,</span><span class=n>pass</span><span class=p>);</span>
+  <span class=n>delay</span><span class=p>(</span><span class=mi>100</span><span class=p>);</span>
+  <span class=n>WiFi</span><span class=p>.</span><span class=n>softAPConfig</span><span class=p>(</span><span class=n>ip</span><span class=p>,</span><span class=n>ip</span><span class=p>,</span><span class=n>subnet</span><span class=p>);</span>
+  <span class=n>IPAddress</span> <span class=n>serverIP</span> <span class=o>=</span> <span class=n>WiFi</span><span class=p>.</span><span class=n>softAPIP</span><span class=p>();</span>
+  <span class=n>server</span><span class=p>.</span><span class=n>on</span><span class=p>(</span><span class=s>&quot;/&quot;</span><span class=p>,</span> <span class=n>handleRoot</span><span class=p>);</span>
+  <span class=n>server</span><span class=p>.</span><span class=n>on</span><span class=p>(</span><span class=s>&quot;/stop&quot;</span><span class=p>,</span> <span class=n>handleStop</span><span class=p>);</span>
+  <span class=n>server</span><span class=p>.</span><span class=n>on</span><span class=p>(</span><span class=s>&quot;/forward&quot;</span><span class=p>,</span> <span class=n>handleForward</span><span class=p>);</span>
+  <span class=n>server</span><span class=p>.</span><span class=n>on</span><span class=p>(</span><span class=s>&quot;/back&quot;</span><span class=p>,</span> <span class=n>handleBack</span><span class=p>);</span>
+  <span class=n>server</span><span class=p>.</span><span class=n>on</span><span class=p>(</span><span class=s>&quot;/left&quot;</span><span class=p>,</span> <span class=n>handleLeft</span><span class=p>);</span>
+  <span class=n>server</span><span class=p>.</span><span class=n>on</span><span class=p>(</span><span class=s>&quot;/right&quot;</span><span class=p>,</span> <span class=n>handleRight</span><span class=p>);</span>
+  <span class=n>server</span><span class=p>.</span><span class=n>begin</span><span class=p>();</span>
 
-  <span class="n">pinMode</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+  <span class=n>pinMode</span><span class=p>(</span><span class=mi>4</span><span class=p>,</span> <span class=n>OUTPUT</span><span class=p>);</span>
 
-  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">();</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;AccessPoint:&quot;</span><span class="p">);</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">ssid</span><span class="p">);</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;IP:&quot;</span><span class="p">);</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">serverIP</span><span class="p">);</span>
-<span class="p">}</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>();</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>print</span><span class=p>(</span><span class=s>&quot;AccessPoint:&quot;</span><span class=p>);</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>(</span><span class=n>ssid</span><span class=p>);</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>print</span><span class=p>(</span><span class=s>&quot;IP:&quot;</span><span class=p>);</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>(</span><span class=n>serverIP</span><span class=p>);</span>
+<span class=p>}</span>
 
-<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">server</span><span class="p">.</span><span class="n">handleClient</span><span class="p">();</span>
-<span class="p">}</span>
-</pre></div>
-</td></tr></table>
+<span class=kt>void</span> <span class=nf>loop</span><span class=p>()</span> <span class=p>{</span>
+  <span class=n>server</span><span class=p>.</span><span class=n>handleClient</span><span class=p>();</span>
+<span class=p>}</span>
+</pre></div></td></tr></table></p>
                 
                   
                 

@@ -634,7 +634,7 @@
 <p>サンプルコードを実行し、実際に色が取れている事を確認しましょう。</p>
 <h2 id="_2">ソースコード</h2>
 <p>Arduino</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+<p> <table class=codehilitetable><tr><td class=linenos><div class=linenodiv><pre>  1
   2
   3
   4
@@ -733,109 +733,107 @@
  97
  98
  99
-100</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;WiFi.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;WiFiClient.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;WebServer.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;FaBoColor_S11059.h&quot;</span><span class="cp"></span>
+100</pre></div></td><td class=code><div class=codehilite><pre><span></span><span class=cp>#include</span> <span class=cpf>&lt;WiFi.h&gt;</span><span class=cp></span>
+<span class=cp>#include</span> <span class=cpf>&lt;WiFiClient.h&gt;</span><span class=cp></span>
+<span class=cp>#include</span> <span class=cpf>&lt;WebServer.h&gt;</span><span class=cp></span>
+<span class=cp>#include</span> <span class=cpf>&quot;FaBoColor_S11059.h&quot;</span><span class=cp></span>
 
-<span class="k">const</span> <span class="kt">char</span> <span class="n">ssid</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;ESP32AP-AKIRA&quot;</span><span class="p">;</span>
-<span class="k">const</span> <span class="kt">char</span> <span class="n">pass</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;11111111&quot;</span><span class="p">;</span>
-<span class="k">const</span> <span class="n">IPAddress</span> <span class="nf">ip</span><span class="p">(</span><span class="mi">192</span><span class="p">,</span><span class="mi">168</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-<span class="k">const</span> <span class="n">IPAddress</span> <span class="nf">subnet</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
-<span class="n">WebServer</span> <span class="nf">server</span><span class="p">(</span><span class="mi">80</span><span class="p">);</span>
+<span class=k>const</span> <span class=kt>char</span> <span class=n>ssid</span><span class=p>[]</span> <span class=o>=</span> <span class=s>&quot;ESP32AP-AKIRA&quot;</span><span class=p>;</span>
+<span class=k>const</span> <span class=kt>char</span> <span class=n>pass</span><span class=p>[]</span> <span class=o>=</span> <span class=s>&quot;11111111&quot;</span><span class=p>;</span>
+<span class=k>const</span> <span class=n>IPAddress</span> <span class=nf>ip</span><span class=p>(</span><span class=mi>192</span><span class=p>,</span><span class=mi>168</span><span class=p>,</span><span class=mi>0</span><span class=p>,</span><span class=mi>1</span><span class=p>);</span>
+<span class=k>const</span> <span class=n>IPAddress</span> <span class=nf>subnet</span><span class=p>(</span><span class=mi>255</span><span class=p>,</span><span class=mi>255</span><span class=p>,</span><span class=mi>255</span><span class=p>,</span><span class=mi>0</span><span class=p>);</span>
+<span class=n>WebServer</span> <span class=nf>server</span><span class=p>(</span><span class=mi>80</span><span class=p>);</span>
 
-<span class="n">FaBoColor</span> <span class="n">faboColor</span><span class="p">;</span>
-<span class="kt">uint16_t</span> <span class="n">r</span><span class="p">,</span><span class="n">g</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">i</span><span class="p">;</span>
-<span class="kt">int</span> <span class="n">RED_MIN</span> <span class="o">=</span> <span class="mi">300</span><span class="p">;</span>
-<span class="kt">int</span> <span class="n">RED_MAX</span> <span class="o">=</span> <span class="mi">700</span><span class="p">;</span>
-<span class="kt">int</span> <span class="n">GREEN_MIN</span> <span class="o">=</span> <span class="mi">230</span><span class="p">;</span>
-<span class="kt">int</span> <span class="n">GREEN_MAX</span> <span class="o">=</span> <span class="mi">700</span><span class="p">;</span>
-<span class="kt">int</span> <span class="n">BLUE_MIN</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
-<span class="kt">int</span> <span class="n">BLUE_MAX</span> <span class="o">=</span> <span class="mi">630</span><span class="p">;</span>
+<span class=n>FaBoColor</span> <span class=n>faboColor</span><span class=p>;</span>
+<span class=kt>uint16_t</span> <span class=n>r</span><span class=p>,</span><span class=n>g</span><span class=p>,</span><span class=n>b</span><span class=p>,</span><span class=n>i</span><span class=p>;</span>
+<span class=kt>int</span> <span class=n>RED_MIN</span> <span class=o>=</span> <span class=mi>300</span><span class=p>;</span>
+<span class=kt>int</span> <span class=n>RED_MAX</span> <span class=o>=</span> <span class=mi>700</span><span class=p>;</span>
+<span class=kt>int</span> <span class=n>GREEN_MIN</span> <span class=o>=</span> <span class=mi>230</span><span class=p>;</span>
+<span class=kt>int</span> <span class=n>GREEN_MAX</span> <span class=o>=</span> <span class=mi>700</span><span class=p>;</span>
+<span class=kt>int</span> <span class=n>BLUE_MIN</span> <span class=o>=</span> <span class=mi>100</span><span class=p>;</span>
+<span class=kt>int</span> <span class=n>BLUE_MAX</span> <span class=o>=</span> <span class=mi>630</span><span class=p>;</span>
 
-<span class="k">const</span> <span class="kt">char</span> <span class="n">header</span><span class="p">[]</span> <span class="n">PROGMEM</span> <span class="o">=</span> <span class="n">R</span><span class="s">&quot;=====(</span>
-<span class="o">&lt;!</span><span class="n">DOCTYPE</span> <span class="n">html</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">html</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">head</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">meta</span> <span class="n">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">meta</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="n">content</span><span class="o">=</span><span class="s">&quot;width=device-width,initial-scale=1&quot;</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="n">head</span><span class="o">&gt;</span>
-<span class="p">)</span><span class="o">=====</span><span class="s">&quot;;</span>
+<span class=k>const</span> <span class=kt>char</span> <span class=n>header</span><span class=p>[]</span> <span class=n>PROGMEM</span> <span class=o>=</span> <span class=n>R</span><span class=s>&quot;=====(</span>
+<span class=o>&lt;!</span><span class=n>DOCTYPE</span> <span class=n>html</span><span class=o>&gt;</span>
+<span class=o>&lt;</span><span class=n>html</span><span class=o>&gt;</span>
+<span class=o>&lt;</span><span class=n>head</span><span class=o>&gt;</span>
+<span class=o>&lt;</span><span class=n>meta</span> <span class=n>charset</span><span class=o>=</span><span class=s>&quot;UTF-8&quot;</span><span class=o>&gt;</span>
+<span class=o>&lt;</span><span class=n>meta</span> <span class=n>name</span><span class=o>=</span><span class=s>&quot;viewport&quot;</span> <span class=n>content</span><span class=o>=</span><span class=s>&quot;width=device-width,initial-scale=1&quot;</span><span class=o>&gt;</span>
+<span class=o>&lt;/</span><span class=n>head</span><span class=o>&gt;</span>
+<span class=p>)</span><span class=o>=====</span><span class=s>&quot;;</span>
 
-<span class="k">const</span> <span class="kt">char</span> <span class="n">footer</span><span class="p">[]</span> <span class="n">PROGMEM</span> <span class="o">=</span> <span class="n">R</span><span class="s">&quot;=====(</span>
-<span class="o">&lt;/</span><span class="n">html</span><span class="o">&gt;</span>
-<span class="p">)</span><span class="o">=====</span><span class="s">&quot;;</span>
+<span class=k>const</span> <span class=kt>char</span> <span class=n>footer</span><span class=p>[]</span> <span class=n>PROGMEM</span> <span class=o>=</span> <span class=n>R</span><span class=s>&quot;=====(</span>
+<span class=o>&lt;/</span><span class=n>html</span><span class=o>&gt;</span>
+<span class=p>)</span><span class=o>=====</span><span class=s>&quot;;</span>
 
-<span class="kt">void</span> <span class="nf">handleRoot</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">faboColor</span><span class="p">.</span><span class="n">readRGBI</span><span class="p">(</span><span class="o">&amp;</span><span class="n">r</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">);</span>
+<span class=kt>void</span> <span class=nf>handleRoot</span><span class=p>()</span> <span class=p>{</span>
+  <span class=n>faboColor</span><span class=p>.</span><span class=n>readRGBI</span><span class=p>(</span><span class=o>&amp;</span><span class=n>r</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>g</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>b</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>i</span><span class=p>);</span>
 
-  <span class="k">if</span><span class="p">(</span><span class="n">r</span><span class="o">&lt;</span><span class="n">RED_MIN</span><span class="p">)</span><span class="n">r</span><span class="o">=</span><span class="n">RED_MIN</span><span class="p">;</span>
-  <span class="k">if</span><span class="p">(</span><span class="n">g</span><span class="o">&lt;</span><span class="n">GREEN_MIN</span><span class="p">)</span><span class="n">g</span><span class="o">=</span><span class="n">GREEN_MIN</span><span class="p">;</span>
-  <span class="k">if</span><span class="p">(</span><span class="n">b</span><span class="o">&lt;</span><span class="n">BLUE_MIN</span><span class="p">)</span><span class="n">b</span><span class="o">=</span><span class="n">BLUE_MIN</span><span class="p">;</span>
+  <span class=k>if</span><span class=p>(</span><span class=n>r</span><span class=o>&lt;</span><span class=n>RED_MIN</span><span class=p>)</span><span class=n>r</span><span class=o>=</span><span class=n>RED_MIN</span><span class=p>;</span>
+  <span class=k>if</span><span class=p>(</span><span class=n>g</span><span class=o>&lt;</span><span class=n>GREEN_MIN</span><span class=p>)</span><span class=n>g</span><span class=o>=</span><span class=n>GREEN_MIN</span><span class=p>;</span>
+  <span class=k>if</span><span class=p>(</span><span class=n>b</span><span class=o>&lt;</span><span class=n>BLUE_MIN</span><span class=p>)</span><span class=n>b</span><span class=o>=</span><span class=n>BLUE_MIN</span><span class=p>;</span>
 
-  <span class="k">if</span><span class="p">(</span><span class="n">r</span><span class="o">&gt;</span><span class="n">RED_MAX</span><span class="p">)</span><span class="n">r</span><span class="o">=</span><span class="n">RED_MAX</span><span class="p">;</span>
-  <span class="k">if</span><span class="p">(</span><span class="n">g</span><span class="o">&gt;</span><span class="n">GREEN_MAX</span><span class="p">)</span><span class="n">g</span><span class="o">=</span><span class="n">GREEN_MAX</span><span class="p">;</span>
-  <span class="k">if</span><span class="p">(</span><span class="n">b</span><span class="o">&gt;</span><span class="n">BLUE_MAX</span><span class="p">)</span><span class="n">b</span><span class="o">=</span><span class="n">BLUE_MAX</span><span class="p">;</span>
+  <span class=k>if</span><span class=p>(</span><span class=n>r</span><span class=o>&gt;</span><span class=n>RED_MAX</span><span class=p>)</span><span class=n>r</span><span class=o>=</span><span class=n>RED_MAX</span><span class=p>;</span>
+  <span class=k>if</span><span class=p>(</span><span class=n>g</span><span class=o>&gt;</span><span class=n>GREEN_MAX</span><span class=p>)</span><span class=n>g</span><span class=o>=</span><span class=n>GREEN_MAX</span><span class=p>;</span>
+  <span class=k>if</span><span class=p>(</span><span class=n>b</span><span class=o>&gt;</span><span class=n>BLUE_MAX</span><span class=p>)</span><span class=n>b</span><span class=o>=</span><span class=n>BLUE_MAX</span><span class=p>;</span>
 
-  <span class="n">r</span> <span class="o">=</span> <span class="n">map</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">RED_MIN</span><span class="p">,</span><span class="n">RED_MAX</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">);</span>
-  <span class="n">g</span> <span class="o">=</span> <span class="n">map</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="n">GREEN_MIN</span><span class="p">,</span><span class="n">GREEN_MAX</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">);</span>
-  <span class="n">b</span> <span class="o">=</span> <span class="n">map</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">BLUE_MIN</span><span class="p">,</span><span class="n">BLUE_MAX</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">);</span>
-  <span class="n">String</span> <span class="n">red</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
-  <span class="k">if</span><span class="p">(</span><span class="n">r</span> <span class="o">&lt;=</span> <span class="mh">0x0f</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">red</span> <span class="o">=</span> <span class="s">&quot;0&quot;</span> <span class="o">+</span> <span class="n">String</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">HEX</span><span class="p">);</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="n">red</span> <span class="o">=</span> <span class="n">String</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">HEX</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="n">String</span> <span class="n">green</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
-  <span class="k">if</span><span class="p">(</span><span class="n">g</span> <span class="o">&lt;=</span> <span class="mh">0x0f</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">green</span> <span class="o">=</span> <span class="s">&quot;0&quot;</span> <span class="o">+</span> <span class="n">String</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="n">HEX</span><span class="p">);</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="n">green</span> <span class="o">=</span> <span class="n">String</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="n">HEX</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="n">String</span> <span class="n">blue</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
-  <span class="k">if</span><span class="p">(</span><span class="n">b</span> <span class="o">&lt;=</span> <span class="mh">0x0f</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">blue</span> <span class="o">=</span> <span class="s">&quot;0&quot;</span> <span class="o">+</span> <span class="n">String</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">HEX</span><span class="p">);</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="n">blue</span> <span class="o">=</span> <span class="n">String</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">HEX</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="n">String</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;#&quot;</span> <span class="o">+</span> <span class="n">red</span> <span class="o">+</span> <span class="n">green</span> <span class="o">+</span> <span class="n">blue</span><span class="p">;</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">color</span><span class="p">);</span>
+  <span class=n>r</span> <span class=o>=</span> <span class=n>map</span><span class=p>(</span><span class=n>r</span><span class=p>,</span><span class=n>RED_MIN</span><span class=p>,</span><span class=n>RED_MAX</span><span class=p>,</span><span class=mi>0</span><span class=p>,</span><span class=mi>255</span><span class=p>);</span>
+  <span class=n>g</span> <span class=o>=</span> <span class=n>map</span><span class=p>(</span><span class=n>g</span><span class=p>,</span><span class=n>GREEN_MIN</span><span class=p>,</span><span class=n>GREEN_MAX</span><span class=p>,</span><span class=mi>0</span><span class=p>,</span><span class=mi>255</span><span class=p>);</span>
+  <span class=n>b</span> <span class=o>=</span> <span class=n>map</span><span class=p>(</span><span class=n>b</span><span class=p>,</span><span class=n>BLUE_MIN</span><span class=p>,</span><span class=n>BLUE_MAX</span><span class=p>,</span><span class=mi>0</span><span class=p>,</span><span class=mi>255</span><span class=p>);</span>
+  <span class=n>String</span> <span class=n>red</span> <span class=o>=</span> <span class=s>&quot;&quot;</span><span class=p>;</span>
+  <span class=k>if</span><span class=p>(</span><span class=n>r</span> <span class=o>&lt;=</span> <span class=mh>0x0f</span><span class=p>)</span> <span class=p>{</span>
+    <span class=n>red</span> <span class=o>=</span> <span class=s>&quot;0&quot;</span> <span class=o>+</span> <span class=n>String</span><span class=p>(</span><span class=n>r</span><span class=p>,</span><span class=n>HEX</span><span class=p>);</span>
+  <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+    <span class=n>red</span> <span class=o>=</span> <span class=n>String</span><span class=p>(</span><span class=n>r</span><span class=p>,</span><span class=n>HEX</span><span class=p>);</span>
+  <span class=p>}</span>
+  <span class=n>String</span> <span class=n>green</span> <span class=o>=</span> <span class=s>&quot;&quot;</span><span class=p>;</span>
+  <span class=k>if</span><span class=p>(</span><span class=n>g</span> <span class=o>&lt;=</span> <span class=mh>0x0f</span><span class=p>)</span> <span class=p>{</span>
+    <span class=n>green</span> <span class=o>=</span> <span class=s>&quot;0&quot;</span> <span class=o>+</span> <span class=n>String</span><span class=p>(</span><span class=n>g</span><span class=p>,</span><span class=n>HEX</span><span class=p>);</span>
+  <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+    <span class=n>green</span> <span class=o>=</span> <span class=n>String</span><span class=p>(</span><span class=n>g</span><span class=p>,</span><span class=n>HEX</span><span class=p>);</span>
+  <span class=p>}</span>
+  <span class=n>String</span> <span class=n>blue</span> <span class=o>=</span> <span class=s>&quot;&quot;</span><span class=p>;</span>
+  <span class=k>if</span><span class=p>(</span><span class=n>b</span> <span class=o>&lt;=</span> <span class=mh>0x0f</span><span class=p>)</span> <span class=p>{</span>
+    <span class=n>blue</span> <span class=o>=</span> <span class=s>&quot;0&quot;</span> <span class=o>+</span> <span class=n>String</span><span class=p>(</span><span class=n>b</span><span class=p>,</span><span class=n>HEX</span><span class=p>);</span>
+  <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+    <span class=n>blue</span> <span class=o>=</span> <span class=n>String</span><span class=p>(</span><span class=n>b</span><span class=p>,</span><span class=n>HEX</span><span class=p>);</span>
+  <span class=p>}</span>
+  <span class=n>String</span> <span class=n>color</span> <span class=o>=</span> <span class=s>&quot;#&quot;</span> <span class=o>+</span> <span class=n>red</span> <span class=o>+</span> <span class=n>green</span> <span class=o>+</span> <span class=n>blue</span><span class=p>;</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>(</span><span class=n>color</span><span class=p>);</span>
 
-  <span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
-  <span class="n">result</span><span class="p">.</span><span class="n">concat</span><span class="p">(</span><span class="n">header</span><span class="p">);</span>
-  <span class="n">result</span><span class="p">.</span><span class="n">concat</span><span class="p">(</span><span class="s">&quot;&lt;body bgcolor=&quot;</span> <span class="o">+</span> <span class="n">color</span> <span class="o">+</span> <span class="s">&quot;&gt;&quot;</span><span class="p">);</span>
-  <span class="n">result</span><span class="p">.</span><span class="n">concat</span><span class="p">(</span><span class="n">color</span><span class="p">);</span>
-  <span class="n">result</span><span class="p">.</span><span class="n">concat</span><span class="p">(</span><span class="s">&quot;&lt;/body&gt;&quot;</span><span class="p">);</span>
-  <span class="n">result</span><span class="p">.</span><span class="n">concat</span><span class="p">(</span><span class="n">footer</span><span class="p">);</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
-  <span class="n">server</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="s">&quot;text/html&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
-<span class="p">}</span>
+  <span class=n>String</span> <span class=n>result</span> <span class=o>=</span> <span class=s>&quot;&quot;</span><span class=p>;</span>
+  <span class=n>result</span><span class=p>.</span><span class=n>concat</span><span class=p>(</span><span class=n>header</span><span class=p>);</span>
+  <span class=n>result</span><span class=p>.</span><span class=n>concat</span><span class=p>(</span><span class=s>&quot;&lt;body bgcolor=&quot;</span> <span class=o>+</span> <span class=n>color</span> <span class=o>+</span> <span class=s>&quot;&gt;&quot;</span><span class=p>);</span>
+  <span class=n>result</span><span class=p>.</span><span class=n>concat</span><span class=p>(</span><span class=n>color</span><span class=p>);</span>
+  <span class=n>result</span><span class=p>.</span><span class=n>concat</span><span class=p>(</span><span class=s>&quot;&lt;/body&gt;&quot;</span><span class=p>);</span>
+  <span class=n>result</span><span class=p>.</span><span class=n>concat</span><span class=p>(</span><span class=n>footer</span><span class=p>);</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>(</span><span class=n>result</span><span class=p>);</span>
+  <span class=n>server</span><span class=p>.</span><span class=n>send</span><span class=p>(</span><span class=mi>200</span><span class=p>,</span> <span class=s>&quot;text/html&quot;</span><span class=p>,</span> <span class=n>result</span><span class=p>);</span>
+<span class=p>}</span>
 
-<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span>
-<span class="p">{</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
-  <span class="n">faboColor</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+<span class=kt>void</span> <span class=nf>setup</span><span class=p>()</span>
+<span class=p>{</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>begin</span><span class=p>(</span><span class=mi>115200</span><span class=p>);</span>
+  <span class=n>faboColor</span><span class=p>.</span><span class=n>begin</span><span class=p>();</span>
 
-  <span class="n">WiFi</span><span class="p">.</span><span class="n">softAP</span><span class="p">(</span><span class="n">ssid</span><span class="p">,</span><span class="n">pass</span><span class="p">);</span>
-  <span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
-  <span class="n">WiFi</span><span class="p">.</span><span class="n">softAPConfig</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span><span class="n">ip</span><span class="p">,</span><span class="n">subnet</span><span class="p">);</span>
-  <span class="n">IPAddress</span> <span class="n">serverIP</span> <span class="o">=</span> <span class="n">WiFi</span><span class="p">.</span><span class="n">softAPIP</span><span class="p">();</span>
-  <span class="n">server</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">,</span> <span class="n">handleRoot</span><span class="p">);</span>
-  <span class="n">server</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+  <span class=n>WiFi</span><span class=p>.</span><span class=n>softAP</span><span class=p>(</span><span class=n>ssid</span><span class=p>,</span><span class=n>pass</span><span class=p>);</span>
+  <span class=n>delay</span><span class=p>(</span><span class=mi>100</span><span class=p>);</span>
+  <span class=n>WiFi</span><span class=p>.</span><span class=n>softAPConfig</span><span class=p>(</span><span class=n>ip</span><span class=p>,</span><span class=n>ip</span><span class=p>,</span><span class=n>subnet</span><span class=p>);</span>
+  <span class=n>IPAddress</span> <span class=n>serverIP</span> <span class=o>=</span> <span class=n>WiFi</span><span class=p>.</span><span class=n>softAPIP</span><span class=p>();</span>
+  <span class=n>server</span><span class=p>.</span><span class=n>on</span><span class=p>(</span><span class=s>&quot;/&quot;</span><span class=p>,</span> <span class=n>handleRoot</span><span class=p>);</span>
+  <span class=n>server</span><span class=p>.</span><span class=n>begin</span><span class=p>();</span>
 
-  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">();</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;AccessPoint:&quot;</span><span class="p">);</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">ssid</span><span class="p">);</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;IP:&quot;</span><span class="p">);</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">serverIP</span><span class="p">);</span>
-<span class="p">}</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>();</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>print</span><span class=p>(</span><span class=s>&quot;AccessPoint:&quot;</span><span class=p>);</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>(</span><span class=n>ssid</span><span class=p>);</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>print</span><span class=p>(</span><span class=s>&quot;IP:&quot;</span><span class=p>);</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>(</span><span class=n>serverIP</span><span class=p>);</span>
+<span class=p>}</span>
 
-<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">server</span><span class="p">.</span><span class="n">handleClient</span><span class="p">();</span>
-<span class="p">}</span>
-</pre></div>
-</td></tr></table>
-
+<span class=kt>void</span> <span class=nf>loop</span><span class=p>()</span> <span class=p>{</span>
+  <span class=n>server</span><span class=p>.</span><span class=n>handleClient</span><span class=p>();</span>
+<span class=p>}</span>
+</pre></div></td></tr></table></p>
 <p>の値を調整して校正します。</p>
 <p><img alt="" src="../img/colortable.png" /></p>
                 

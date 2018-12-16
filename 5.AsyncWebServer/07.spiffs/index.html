@@ -685,18 +685,16 @@
 <p>dataフォルダを作成します。</p>
 <p><img alt="" src="../img/spiffs007.png" /></p>
 <p>次にdataフォルダの中に、index.html を作成し、保存します。</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<p> <table class=codehilitetable><tr><td class=linenos><div class=linenodiv><pre>1
 2
 3
 4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">&lt;html&gt;</span>
-<span class="nt">&lt;body&gt;</span>
+5</pre></div></td><td class=code><div class=codehilite><pre><span></span><span class=nt>&lt;html&gt;</span>
+<span class=nt>&lt;body&gt;</span>
 Hello World!
-<span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
-</pre></div>
-</td></tr></table>
-
+<span class=nt>&lt;/body&gt;</span>
+<span class=nt>&lt;/html&gt;</span>
+</pre></div></td></tr></table></p>
 <p>ESP32 Sketch Data Uploadでindex.htmlをUploadします。</p>
 <p><img alt="" src="../img/spiffs005.png" /></p>
 <h2 id="espasyncwebserver">ESPAsyncWebServerの組み込み</h2>
@@ -716,7 +714,7 @@ Hello World!
 <p><img alt="" src="../img/spiffs010.png" /></p>
 <p><img alt="" src="../img/spiffs014.png" /></p>
 <h2 id="apwebserver">APとWebServer</h2>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<p> <table class=codehilitetable><tr><td class=linenos><div class=linenodiv><pre> 1
  2
  3
  4
@@ -747,40 +745,39 @@ Hello World!
 29
 30
 31
-32</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;WiFi.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;ESPAsyncWebServer.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;FS.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;SPIFFS.h&quot;</span><span class="cp"></span>
+32</pre></div></td><td class=code><div class=codehilite><pre><span></span><span class=cp>#include</span> <span class=cpf>&lt;WiFi.h&gt;</span><span class=cp></span>
+<span class=cp>#include</span> <span class=cpf>&quot;ESPAsyncWebServer.h&quot;</span><span class=cp></span>
+<span class=cp>#include</span> <span class=cpf>&quot;FS.h&quot;</span><span class=cp></span>
+<span class=cp>#include</span> <span class=cpf>&quot;SPIFFS.h&quot;</span><span class=cp></span>
 
-<span class="k">const</span> <span class="kt">char</span> <span class="n">ssid</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;ESP32AP-AKIRA&quot;</span><span class="p">;</span>
-<span class="k">const</span> <span class="kt">char</span> <span class="n">pass</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;11111111&quot;</span><span class="p">;</span>
-<span class="k">const</span> <span class="n">IPAddress</span> <span class="nf">ip</span><span class="p">(</span><span class="mi">192</span><span class="p">,</span><span class="mi">168</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-<span class="k">const</span> <span class="n">IPAddress</span> <span class="nf">subnet</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
-<span class="n">AsyncWebServer</span> <span class="nf">server</span><span class="p">(</span><span class="mi">80</span><span class="p">);</span>
+<span class=k>const</span> <span class=kt>char</span> <span class=n>ssid</span><span class=p>[]</span> <span class=o>=</span> <span class=s>&quot;ESP32AP-AKIRA&quot;</span><span class=p>;</span>
+<span class=k>const</span> <span class=kt>char</span> <span class=n>pass</span><span class=p>[]</span> <span class=o>=</span> <span class=s>&quot;11111111&quot;</span><span class=p>;</span>
+<span class=k>const</span> <span class=n>IPAddress</span> <span class=nf>ip</span><span class=p>(</span><span class=mi>192</span><span class=p>,</span><span class=mi>168</span><span class=p>,</span><span class=mi>0</span><span class=p>,</span><span class=mi>1</span><span class=p>);</span>
+<span class=k>const</span> <span class=n>IPAddress</span> <span class=nf>subnet</span><span class=p>(</span><span class=mi>255</span><span class=p>,</span><span class=mi>255</span><span class=p>,</span><span class=mi>255</span><span class=p>,</span><span class=mi>0</span><span class=p>);</span>
+<span class=n>AsyncWebServer</span> <span class=nf>server</span><span class=p>(</span><span class=mi>80</span><span class=p>);</span>
 
-<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span>
-<span class="p">{</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
-  <span class="n">SPIFFS</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
-  <span class="n">WiFi</span><span class="p">.</span><span class="n">softAP</span><span class="p">(</span><span class="n">ssid</span><span class="p">,</span><span class="n">pass</span><span class="p">);</span>
-  <span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
-  <span class="n">WiFi</span><span class="p">.</span><span class="n">softAPConfig</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span><span class="n">ip</span><span class="p">,</span><span class="n">subnet</span><span class="p">);</span>
-  <span class="n">IPAddress</span> <span class="n">serverIP</span> <span class="o">=</span> <span class="n">WiFi</span><span class="p">.</span><span class="n">softAPIP</span><span class="p">();</span>
-  <span class="n">server</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">,</span> <span class="n">HTTP_GET</span><span class="p">,</span> <span class="p">[](</span><span class="n">AsyncWebServerRequest</span> <span class="o">*</span><span class="n">request</span><span class="p">){</span>
-    <span class="n">request</span><span class="o">-&gt;</span><span class="n">send</span><span class="p">(</span><span class="n">SPIFFS</span><span class="p">,</span> <span class="s">&quot;/index.html&quot;</span><span class="p">,</span> <span class="s">&quot;text/html&quot;</span><span class="p">);</span>
-  <span class="p">});</span> 
-  <span class="n">server</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+<span class=kt>void</span> <span class=nf>setup</span><span class=p>()</span>
+<span class=p>{</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>begin</span><span class=p>(</span><span class=mi>115200</span><span class=p>);</span>
+  <span class=n>SPIFFS</span><span class=p>.</span><span class=n>begin</span><span class=p>();</span>
+  <span class=n>WiFi</span><span class=p>.</span><span class=n>softAP</span><span class=p>(</span><span class=n>ssid</span><span class=p>,</span><span class=n>pass</span><span class=p>);</span>
+  <span class=n>delay</span><span class=p>(</span><span class=mi>100</span><span class=p>);</span>
+  <span class=n>WiFi</span><span class=p>.</span><span class=n>softAPConfig</span><span class=p>(</span><span class=n>ip</span><span class=p>,</span><span class=n>ip</span><span class=p>,</span><span class=n>subnet</span><span class=p>);</span>
+  <span class=n>IPAddress</span> <span class=n>serverIP</span> <span class=o>=</span> <span class=n>WiFi</span><span class=p>.</span><span class=n>softAPIP</span><span class=p>();</span>
+  <span class=n>server</span><span class=p>.</span><span class=n>on</span><span class=p>(</span><span class=s>&quot;/&quot;</span><span class=p>,</span> <span class=n>HTTP_GET</span><span class=p>,</span> <span class=p>[](</span><span class=n>AsyncWebServerRequest</span> <span class=o>*</span><span class=n>request</span><span class=p>){</span>
+    <span class=n>request</span><span class=o>-&gt;</span><span class=n>send</span><span class=p>(</span><span class=n>SPIFFS</span><span class=p>,</span> <span class=s>&quot;/index.html&quot;</span><span class=p>,</span> <span class=s>&quot;text/html&quot;</span><span class=p>);</span>
+  <span class=p>});</span> 
+  <span class=n>server</span><span class=p>.</span><span class=n>begin</span><span class=p>();</span>
 
-  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">();</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;AccessPoint:&quot;</span><span class="p">);</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">ssid</span><span class="p">);</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;IP:&quot;</span><span class="p">);</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">serverIP</span><span class="p">);</span>
-<span class="p">}</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>();</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>print</span><span class=p>(</span><span class=s>&quot;AccessPoint:&quot;</span><span class=p>);</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>(</span><span class=n>ssid</span><span class=p>);</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>print</span><span class=p>(</span><span class=s>&quot;IP:&quot;</span><span class=p>);</span>
+  <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>(</span><span class=n>serverIP</span><span class=p>);</span>
+<span class=p>}</span>
 
-<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{}</span>
-</pre></div>
-</td></tr></table>
+<span class=kt>void</span> <span class=nf>loop</span><span class=p>()</span> <span class=p>{}</span>
+</pre></div></td></tr></table></p>
                 
                   
                 
