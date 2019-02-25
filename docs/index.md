@@ -9,7 +9,7 @@ Denbun Arduino Docsは、FaBo Denbunの学習用ドキュメントです。
 GithubのRepoに[Issues](https://github.com/FaBoPlatform/DenbunDocs/issues)をあげる。
 
 ## その他のドキュメント
-
+- [LoRa Docs](https://faboplatform.github.io/LoRaDocs/)
 - [Android Things Docs](https://faboplatform.github.io/AndroidThingsDocs/)
 - [DonkeyCar Docs](https://faboplatform.github.io/DonkeyDocs/)
 - [Denbun Docs](https://faboplatform.github.io/DenbunDocs/)
